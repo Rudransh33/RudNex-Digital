@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rudnex - Innovative Mobile Apps</title>
+    <!-- Deprecated: This legacy HTML frontend is kept for reference only. The React/Next.js frontend is now the primary UI. -->
+    <!-- Dev redirect to React app (only if running) -->
+    <script>
+        (function() {
+            var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+            if (!isLocal) return;
+            var redirected = false;
+            function redirect() {
+                if (redirected) return; redirected = true;
+                try { window.location.replace('http://localhost:3000'); } catch(e) {}
+            }
+            // Try to detect if the React dev server is up before redirecting
+            var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+            var timeout = setTimeout(function(){ if (controller) controller.abort(); }, 700);
+            try {
+                fetch('http://localhost:3000', { mode: 'no-cors', signal: controller ? controller.signal : undefined })
+                    .then(function(){ clearTimeout(timeout); redirect(); })
+                    .catch(function(){ /* stay on this page if dev server not running */ });
+            } catch (e) { /* ignore */ }
+        })();
+    </script>
+    <noscript>
+        <div style="padding:16px;background:#111;color:#fff;font-family:system-ui,Arial;margin:0">
+            React frontend is recommended. If you are running locally, start it at http://localhost:3000
+        </div>
+    </noscript>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff4081;
+            --primary-purple: #9c27b0;
+            --primary-blue: #2196f3;
+            --primary-cyan: #00bcd4;
+            --primary-teal: #009688;
+            --primary-lime: #8bc34a;
+            --primary-orange: #ff9800;
+            --gradient-1: linear-gradient(135deg, #ff4081, #9c27b0);
+            --gradient-2: linear-gradient(135deg, #2196f3, #00bcd4);
+            --gradient-3: linear-gradient(135deg, #009688, #8bc34a);
+            --gradient-bubble: linear-gradient(135deg, #ff4081, #9c27b0, #2196f3, #00bcd4);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #ff4081, #9c27b0, #2196f3, #00bcd4);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Bubbles Background */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: var(--gradient-bubble);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 100px; height: 100px; left: 35%; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 40px; height: 40px; left: 50%; animation-delay: 1s; }
+        .bubble:nth-child(5) { width: 120px; height: 120px; left: 70%; animation-delay: 3s; }
+        .bubble:nth-child(6) { width: 50px; height: 50px; left: 85%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 64, 129, 0.5)); }
+            to { filter: drop-shadow(0 0 25px rgba(156, 39, 176, 0.8)); }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-item a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .nav-item a:hover::before {
+            left: 0;
+        }
+
+        .nav-item a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+        }
+
+        .nav-item a.active {
+            background: var(--gradient-1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 64, 129, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 90px;
+            min-height: calc(100vh - 90px);
+        }
+
+        .page {
+            display: none;
+            padding: 2rem 0;
+            animation: pageSlide 0.6s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageSlide {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Home Page Styles */
+        .hero-section {
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-bubble);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .app-showcase {
+            display: grid;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .app-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: cardFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 64, 129, 0.1), transparent);
+            animation: cardRotate 10s linear infinite;
+        }
+
+        @keyframes cardRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 64, 129, 0.3);
+        }
+
+        .app-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(255, 64, 129, 0.5));
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-3);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            animation: badgePulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .status-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: badgeShine 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* About Page Styles */
+        .about-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: justify;
+            opacity: 0.95;
+        }
+
+        /* Contact Page Styles */
+        .contact-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 2rem 0;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #00bcd4;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1.2rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
+            background: var(--glass-bg);
+            color: white;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            justify-self: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(33, 150, 243, 0.4);
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-cyan);
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-info a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-cyan);
+        }
+
+
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Video Generator Page Styles */
+        .video-generator-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .generator-section {
+            margin: 3rem 0;
+        }
+
+        .generator-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .generator-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 64, 129, 0.1), transparent);
+            animation: cardRotate 15s linear infinite;
+        }
+
+        .generator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.2);
+        }
+
+        .input-panel {
+            position: relative;
+            z-index: 1;
+        }
+
+        .output-panel {
+            position: relative;
+            z-index: 1;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-cyan);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
+            background: var(--glass-bg);
+            color: white;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .generate-btn {
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .generate-btn:hover::before {
+            left: 100%;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 64, 129, 0.4);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+
+        .video-preview {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .video-preview:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .preview-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .preview-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-2);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+            animation: progressPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes progressPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .progress-text {
+            text-align: center;
+            color: var(--primary-cyan);
+            font-weight: 500;
+        }
+
+        .output-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .download-btn {
+            background: var(--gradient-3);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 150, 136, 0.4);
+        }
+
+        .file-upload {
+            position: relative;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: var(--glass-bg);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .quick-action-btn {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quick-action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 64, 129, 0.3);
+            border-color: var(--primary-cyan);
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+        }
+
+        .action-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .action-desc {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .history-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .history-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .clear-history-btn {
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-history-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .history-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 3rem;
+        }
+
+        .history-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .history-info {
+            flex: 1;
+        }
+
+        .history-title {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .history-details {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .history-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-btn:hover {
+            background: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 90px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 90px);
+                background: var(--glass-bg);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 3rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 1rem 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .app-card {
+                padding: 2rem;
+            }
+
+            .app-title {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+
+
+            /* Video Generator Mobile Styles */
+            .generator-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .output-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .history-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .clear-history-btn {
+                align-self: flex-end;
+            }
+
+            .history-item {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .history-actions {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .app-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Bubbles Background -->
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Rudnex</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" onclick="showPage('home')">Home</a>
+                </li>
+                <li class="nav-item" id="navVideoGen" style="display:none;">
+                    <a href="#" class="nav-link" onclick="showPage('video-generator')">Video Generator</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('about')">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="container">
+                <section class="hero-section">
+                    <h1 class="hero-title">Welcome to Rudnex</h1>
+                    <p class="hero-subtitle">Creating amazing mobile apps that transform your digital life</p>
+                </section>
+
+                <section class="app-showcase">
+                    <div class="app-card">
+                        <span class="app-icon">📱</span>
+                        <h2 class="app-title">ToDo List App</h2>
+                        <p class="app-description">
+                            A beautiful and intuitive task management application that helps you organize your daily activities with style and efficiency. Features include smart categorization, reminder notifications, and seamless synchronization across all your devices.
+                        </p>
+                        <div class="status-badge">
+                            🚀 Coming Soon
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <span class="app-icon">🎧</span>
+                        <h2 class="app-title">Audiu App</h2>
+                        <p class="app-description">
+                            Create immersive audio stories and dramas with natural AI voices and soundscapes.
+                        </p>
+                        <div class="status-badge">
+                            🚀 Coming Soon
+                        </div>
+                    </div>
+                </section>
+
+                <section class="hero-section">
+                    <p class="hero-subtitle">More innovative apps are on the way! Stay tuned for exciting updates.</p>
+                </section>
+            </div>
+        </div>
+
+        <!-- Video Generator Page -->
+        <div id="video-generator" class="page" style="display:none;">
+            <div class="container">
+                <section class="hero-section">
+                    <h1 class="hero-title">AI Video Generator</h1>
+                    <p class="hero-subtitle">Create stunning videos from text and images with advanced AI technology</p>
+                </section>
+
+                <div class="video-generator-content">
+                    <!-- Text to Video Section -->
+                    <div class="generator-section">
+                        <h2 class="section-title">🎬 Text to Video</h2>
+                        <div class="generator-card">
+                            <div class="input-panel">
+                                <div class="form-group">
+                                    <label for="textPrompt">Text Prompt</label>
+                                    <textarea id="textPrompt" placeholder="Describe the video you want to create... (e.g., 'A serene sunset over the ocean with gentle waves')" rows="4"></textarea>
+                                </div>
+                                
+                                <div class="settings-grid">
+                                    <div class="form-group">
+                                        <label for="textDuration">Duration (seconds)</label>
+                                        <input type="number" id="textDuration" value="3" min="1" max="30" step="0.5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textFPS">FPS</label>
+                                        <select id="textFPS">
+                                            <option value="15">15 FPS</option>
+                                            <option value="30" selected>30 FPS</option>
+                                            <option value="60">60 FPS</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textFormat">Video Format</label>
+                                        <select id="textFormat" onchange="updateTextResolution()">
+                                            <option value="Square">Square (1:1)</option>
+                                            <option value="Vertical">Vertical (9:16) - Instagram/TikTok</option>
+                                            <option value="Horizontal">Horizontal (16:9) - YouTube</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textResolution">Resolution</label>
+                                        <select id="textResolution">
+                                            <option value="512x512">512x512</option>
+                                            <option value="768x768">768x768</option>
+                                            <option value="1024x1024">1024x1024</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textStyle">Style</label>
+                                        <select id="textStyle">
+                                            <option value="Realistic">Realistic</option>
+                                            <option value="Artistic">Artistic</option>
+                                            <option value="Cartoon">Cartoon</option>
+                                            <option value="Abstract">Abstract</option>
+                                            <option value="Cinematic">Cinematic</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="textPlatform">Platform Optimization</label>
+                                        <select id="textPlatform">
+                                            <option value="None">None</option>
+                                            <option value="Instagram Stories">Instagram Stories</option>
+                                            <option value="Instagram Reels">Instagram Reels</option>
+                                            <option value="TikTok">TikTok</option>
+                                            <option value="YouTube Shorts">YouTube Shorts</option>
+                                            <option value="YouTube Standard">YouTube Standard</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <button class="generate-btn" onclick="generateTextVideo()">
+                                    <span class="btn-icon">🎬</span>
+                                    Generate Video from Text
+                                </button>
+                            </div>
+                            
+                            <div class="output-panel">
+                                <div class="preview-container">
+                                    <div id="textPreview" class="video-preview">
+                                        <div class="preview-placeholder">
+                                            <span class="preview-icon">🎥</span>
+                                            <p>Video preview will appear here</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-container" id="textProgress" style="display: none;">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="textProgressFill"></div>
+                                    </div>
+                                    <p class="progress-text" id="textProgressText">Initializing...</p>
+                                </div>
+                                
+                                <div class="output-controls">
+                                    <button class="download-btn" id="textDownloadBtn" style="display: none;" onclick="downloadTextVideo()">
+                                        <span class="btn-icon">⬇️</span>
+                                        Download MP4
+                                    </button>
+                                    <button class="download-btn" id="textGifBtn" style="display: none;" onclick="downloadTextGif()">
+                                        <span class="btn-icon">🖼️</span>
+                                        Download GIF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image to Video Section -->
+                    <div class="generator-section">
+                        <h2 class="section-title">🖼️ Image to Video</h2>
+                        <div class="generator-card">
+                            <div class="input-panel">
+                                <div class="form-group">
+                                    <label for="imageInput">Upload Image</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
+                                        <div class="upload-area" id="uploadArea">
+                                            <span class="upload-icon">📁</span>
+                                            <p>Click to upload or drag image here</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="imagePrompt">Optional Text Prompt</label>
+                                    <textarea id="imagePrompt" placeholder="Add additional guidance for the video generation... (optional)" rows="3"></textarea>
+                                </div>
+                                
+                                <div class="settings-grid">
+                                    <div class="form-group">
+                                        <label for="imageDuration">Duration (seconds)</label>
+                                        <input type="number" id="imageDuration" value="3" min="1" max="30" step="0.5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="imageFPS">FPS</label>
+                                        <select id="imageFPS">
+                                            <option value="15">15 FPS</option>
+                                            <option value="30" selected>30 FPS</option>
+                                            <option value="60">60 FPS</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="imageFormat">Video Format</label>
+                                        <select id="imageFormat" onchange="updateImageResolution()">
+                                            <option value="Square">Square (1:1)</option>
+                                            <option value="Vertical">Vertical (9:16) - Instagram/TikTok</option>
+                                            <option value="Horizontal">Horizontal (16:9) - YouTube</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="imageResolution">Resolution</label>
+                                        <select id="imageResolution">
+                                            <option value="512x512">512x512</option>
+                                            <option value="768x768">768x768</option>
+                                            <option value="1024x1024">1024x1024</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="motionType">Motion Type</label>
+                                        <select id="motionType">
+                                            <option value="Subtle">Subtle</option>
+                                            <option value="Moderate">Moderate</option>
+                                            <option value="Dynamic">Dynamic</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="motionDirection">Motion Direction</label>
+                                        <select id="motionDirection">
+                                            <option value="Auto">Auto</option>
+                                            <option value="Left">Left</option>
+                                            <option value="Right">Right</option>
+                                            <option value="Up">Up</option>
+                                            <option value="Down">Down</option>
+                                            <option value="Zoom In">Zoom In</option>
+                                            <option value="Zoom Out">Zoom Out</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <button class="generate-btn" onclick="generateImageVideo()">
+                                    <span class="btn-icon">🎬</span>
+                                    Generate Video from Image
+                                </button>
+                            </div>
+                            
+                            <div class="output-panel">
+                                <div class="preview-container">
+                                    <div id="imagePreview" class="video-preview">
+                                        <div class="preview-placeholder">
+                                            <span class="preview-icon">🖼️</span>
+                                            <p>Image and video preview will appear here</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="progress-container" id="imageProgress" style="display: none;">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="imageProgressFill"></div>
+                                    </div>
+                                    <p class="progress-text" id="imageProgressText">Initializing...</p>
+                                </div>
+                                
+                                <div class="output-controls">
+                                    <button class="download-btn" id="imageDownloadBtn" style="display: none;" onclick="downloadImageVideo()">
+                                        <span class="btn-icon">⬇️</span>
+                                        Download MP4
+                                    </button>
+                                    <button class="download-btn" id="imageGifBtn" style="display: none;" onclick="downloadImageGif()">
+                                        <span class="btn-icon">🖼️</span>
+                                        Download GIF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Section -->
+                    <div class="generator-section">
+                        <h2 class="section-title">⚡ Quick Actions</h2>
+                        <div class="quick-actions">
+                            <button class="quick-action-btn" onclick="quickAction('instagram-story')">
+                                <span class="action-icon">📱</span>
+                                <span class="action-title">Instagram Story</span>
+                                <span class="action-desc">Vertical, 15s, optimized</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="quickAction('tiktok-video')">
+                                <span class="action-icon">🎵</span>
+                                <span class="action-title">TikTok Video</span>
+                                <span class="action-desc">Vertical, dynamic effects</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="quickAction('youtube-video')">
+                                <span class="action-icon">📺</span>
+                                <span class="action-title">YouTube Video</span>
+                                <span class="action-desc">Horizontal, professional</span>
+                            </button>
+                            <button class="quick-action-btn" onclick="quickAction('square-format')">
+                                <span class="action-icon">⬜</span>
+                                <span class="action-title">Square Format</span>
+                                <span class="action-desc">Universal, balanced</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Generation History -->
+                    <div class="generator-section">
+                        <h2 class="section-title">📋 Generation History</h2>
+                        <div class="history-container">
+                            <div class="history-header">
+                                <h3>Recent Generations</h3>
+                                <button class="clear-history-btn" onclick="clearHistory()">Clear All</button>
+                            </div>
+                            <div class="history-list" id="historyList">
+                                <div class="history-placeholder">
+                                    <span class="history-icon">📝</span>
+                                    <p>No generations yet. Create your first video!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about" class="page">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="section-title">About Rudnex</h2>
+                    <p class="about-text">
+                        Welcome to Rudnex, where innovation meets creativity in the world of mobile application development. We are passionate about crafting digital experiences that not only solve real-world problems but also bring joy and efficiency to everyday life.
+                    </p>
+                    <p class="about-text">
+                        Our mission is to develop intuitive, beautiful, and functional mobile applications that enhance productivity and make technology more accessible to everyone. We believe that great apps are born from understanding user needs and translating them into seamless digital experiences.
+                    </p>
+                    <p class="about-text">
+                        Each application we create is meticulously designed with attention to detail, user-centric approach, and cutting-edge technology. From concept to deployment, we ensure that every feature serves a purpose and every interaction feels natural and delightful.
+                    </p>
+                    <p class="about-text">
+                        At Rudnex, we're not just building apps – we're building solutions that make a meaningful difference in people's lives. Whether it's improving productivity, enhancing communication, or simplifying complex tasks, our applications are designed to empower users and create positive impact.
+                    </p>
+                    <p class="about-text">
+                        Join us on this exciting journey as we continue to push the boundaries of mobile app development. Your feedback, support, and trust inspire us to create better, more innovative solutions every day.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="container">
+                <div class="contact-content">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appRelated">Related App</label>
+                            <select id="appRelated" name="appRelated">
+                                <option value="">Select an app (if applicable)</option>
+                                <option value="todo-list">ToDo List App</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="business">Business Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Brief description of your inquiry">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required placeholder="Please provide detailed information about your query, feedback, or any issues you're experiencing..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                    
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><strong>General Support:</strong> <a href="mailto:support@rudnex.com">support@rudnex.com</a></p>
+                        <p><strong>Technical Support:</strong> <a href="mailto:tech@rudnex.com">tech@rudnex.com</a></p>
+                        <p><strong>Business Inquiries:</strong> <a href="mailto:business@rudnex.com">business@rudnex.com</a></p>
+                        <p><strong>Partnership:</strong> <a href="mailto:partnership@rudnex.com">partnership@rudnex.com</a></p>
+                        <p><strong>Website:</strong> <a href="https://rudnex.com" target="_blank">www.rudnex.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Rudnex. All rights reserved. | Crafting digital experiences with passion ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+
+
+        // Page navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+                if (page.id === 'video-generator') {
+                    // keep hidden if not admin
+                    const allow = window.__rudnex_is_admin === true
+                    page.style.display = allow ? 'block' : 'none'
+                }
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active navigation link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Close mobile menu
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Determine appropriate email based on inquiry type
+            let targetEmail = 'help@rudnex.com';
+            switch(data.appRelated) {
+                case 'support':
+                    targetEmail = 'help@rudnex.com';
+                    break;
+                case 'business':
+                    targetEmail = 'business@rudnex.com';
+                    break;
+                case 'partnership':
+                    targetEmail = 'partnership@rudnex.com';
+                    break;
+            }
+            
+            // Create email content
+            const subject = encodeURIComponent(data.subject || 'Contact Form Submission');
+            const emailBody = encodeURIComponent(
+                `Contact Form Submission from Rudnex Website\n\n` +
+                `Name: ${data.firstName} ${data.lastName}\n` +
+                `Email: ${data.email}\n` +
+                `Phone: ${data.phone || 'Not provided'}\n` +
+                `Related App: ${data.appRelated || 'Not specified'}\n` +
+                `Subject: ${data.subject}\n\n` +
+                `Message:\n${data.message}\n\n` +
+                `---\nSent from Rudnex Contact Form`
+            );
+            
+            // Open default email client
+            const mailtoLink = `mailto:${targetEmail}?subject=${subject}&body=${emailBody}`;
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you for contacting us! Your default email client will open to send the message.');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Smooth navbar hide/show on scroll
+        let lastScrollY = window.scrollY;
+        let navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const navMenu = document.getElementById('navMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navbar = document.querySelector('.navbar');
+            
+            if (!navbar.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Add click event listeners to navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('onclick').match(/'(\w+)'/)[1];
+                
+                // Update active states
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show page
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+                
+                // Close mobile menu
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.app-card, .about-content, .contact-content');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Add dynamic bubble generation
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.width = bubble.style.height = Math.random() * 60 + 40 + 'px';
+            bubble.style.animationDuration = Math.random() * 3 + 3 + 's';
+            bubble.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.querySelector('.bubbles').appendChild(bubble);
+            
+            // Remove bubble after animation
+            setTimeout(() => {
+                if (bubble.parentNode) {
+                    bubble.parentNode.removeChild(bubble);
+                }
+            }, 8000);
+        }
+
+        // Create bubbles periodically
+        setInterval(createBubble, 3000);
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('navMenu').classList.remove('active');
+            }
+        });
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Initialize first page animation
+            setTimeout(() => {
+                document.querySelector('.hero-title').style.animation = 'titleFloat 4s ease-in-out infinite';
+            }, 500);
+            
+            // Admin gate: reveal Video Generator only for admin
+            const localFlag = localStorage.getItem('rudnex_admin') === '1'
+            fetch('/api/admin/session', { credentials: 'include' })
+              .then(res => res.json())
+              .then(data => {
+                window.__rudnex_is_admin = Boolean(data && data.authenticated) || localFlag
+                if (window.__rudnex_is_admin) {
+                    document.getElementById('navVideoGen').style.display = ''
+                    document.getElementById('video-generator').style.display = ''
+                }
+              })
+              .catch(() => {
+                window.__rudnex_is_admin = localFlag
+                if (window.__rudnex_is_admin) {
+                    document.getElementById('navVideoGen').style.display = ''
+                    document.getElementById('video-generator').style.display = ''
+                }
+              })
+        });
+
+        // Performance optimization: Throttle scroll events
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const args = arguments;
+                const context = this;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
+        // Apply throttling to scroll events
+        const throttledScroll = throttle(() => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        }, 16); // ~60fps
+
+        window.addEventListener('scroll', throttledScroll);
+
+
+
+        // Video Generator Functionality
+        let videoGenerationHistory = [];
+        let currentGeneration = null;
+        const API_BASE_URL = 'http://localhost:5000/api';
+
+        // Resolution options for different formats
+        const resolutionOptions = {
+            'Square': ['512x512', '768x768', '1024x1024'],
+            'Vertical': ['480x854', '720x1280', '1080x1920', '1440x2560'],
+            'Horizontal': ['426x240', '640x360', '854x480', '1280x720', '1920x1080', '2560x1440', '3840x2160']
+        };
+
+        function updateTextResolution() {
+            const format = document.getElementById('textFormat').value;
+            const resolutionSelect = document.getElementById('textResolution');
+            const options = resolutionOptions[format] || resolutionOptions['Square'];
+            
+            resolutionSelect.innerHTML = '';
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                resolutionSelect.appendChild(optionElement);
+            });
+        }
+
+        function updateImageResolution() {
+            const format = document.getElementById('imageFormat').value;
+            const resolutionSelect = document.getElementById('imageResolution');
+            const options = resolutionOptions[format] || resolutionOptions['Square'];
+            
+            resolutionSelect.innerHTML = '';
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                optionElement.textContent = option;
+                resolutionSelect.appendChild(optionElement);
+            });
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" style="max-width: 100%; max-height: 100%; border-radius: 15px;">
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function generateTextVideo() {
+            const prompt = document.getElementById('textPrompt').value.trim();
+            if (!prompt) {
+                showNotification('Please enter a text prompt', 'error');
+                return;
+            }
+
+            const settings = {
+                duration: parseFloat(document.getElementById('textDuration').value),
+                fps: parseInt(document.getElementById('textFPS').value),
+                format: document.getElementById('textFormat').value,
+                resolution: document.getElementById('textResolution').value,
+                style: document.getElementById('textStyle').value,
+                platform: document.getElementById('textPlatform').value
+            };
+
+            try {
+                await startTextGeneration(prompt, settings);
+            } catch (error) {
+                console.error('Generation error:', error);
+                showNotification('Generation failed: ' + error.message, 'error');
+            }
+        }
+
+        async function generateImageVideo() {
+            const imageInput = document.getElementById('imageInput');
+            if (!imageInput.files[0]) {
+                showNotification('Please select an image', 'error');
+                return;
+            }
+
+            const prompt = document.getElementById('imagePrompt').value.trim();
+            const settings = {
+                duration: parseFloat(document.getElementById('imageDuration').value),
+                fps: parseInt(document.getElementById('imageFPS').value),
+                format: document.getElementById('imageFormat').value,
+                resolution: document.getElementById('imageResolution').value,
+                motionType: document.getElementById('motionType').value,
+                motionDirection: document.getElementById('motionDirection').value
+            };
+
+            try {
+                await startImageGeneration(prompt, settings, imageInput.files[0]);
+            } catch (error) {
+                console.error('Generation error:', error);
+                showNotification('Generation failed: ' + error.message, 'error');
+            }
+        }
+
+        async function startTextGeneration(prompt, settings) {
+            const progressContainer = document.getElementById('textProgress');
+            const progressFill = document.getElementById('textProgressFill');
+            const progressText = document.getElementById('textProgressText');
+            const generateBtn = document.querySelector('#textPrompt').closest('.input-panel').querySelector('.generate-btn');
+
+            // Show progress
+            progressContainer.style.display = 'block';
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<span class="btn-icon">⏳</span>Generating...';
+
+            // Update progress
+            progressFill.style.width = '10%';
+            progressText.textContent = 'Sending request to server...';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate/text-to-video`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        settings: settings
+                    })
+                });
+
+                progressFill.style.width = '50%';
+                progressText.textContent = 'Processing video generation...';
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                progressFill.style.width = '90%';
+                progressText.textContent = 'Finalizing video...';
+
+                if (result.success) {
+                    progressFill.style.width = '100%';
+                    progressText.textContent = 'Generation completed!';
+                    
+                    setTimeout(() => {
+                        completeTextGeneration(prompt, settings, result.output_file);
+                    }, 1000);
+                } else {
+                    throw new Error(result.error || 'Generation failed');
+                }
+
+            } catch (error) {
+                console.error('API Error:', error);
+                progressText.textContent = 'Generation failed';
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<span class="btn-icon">🎬</span>Generate Video from Text';
+                throw error;
+            }
+        }
+
+        async function startImageGeneration(prompt, settings, imageFile) {
+            const progressContainer = document.getElementById('imageProgress');
+            const progressFill = document.getElementById('imageProgressFill');
+            const progressText = document.getElementById('imageProgressText');
+            const generateBtn = document.querySelector('#imageInput').closest('.input-panel').querySelector('.generate-btn');
+
+            // Show progress
+            progressContainer.style.display = 'block';
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<span class="btn-icon">⏳</span>Generating...';
+
+            // Update progress
+            progressFill.style.width = '10%';
+            progressText.textContent = 'Uploading image...';
+
+            try {
+                const formData = new FormData();
+                formData.append('image', imageFile);
+                formData.append('prompt', prompt);
+                formData.append('settings', JSON.stringify(settings));
+
+                progressFill.style.width = '30%';
+                progressText.textContent = 'Sending to server...';
+
+                const response = await fetch(`${API_BASE_URL}/generate/image-to-video`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                progressFill.style.width = '60%';
+                progressText.textContent = 'Processing video generation...';
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                progressFill.style.width = '90%';
+                progressText.textContent = 'Finalizing video...';
+
+                if (result.success) {
+                    progressFill.style.width = '100%';
+                    progressText.textContent = 'Generation completed!';
+                    
+                    setTimeout(() => {
+                        completeImageGeneration(prompt, settings, result.output_file);
+                    }, 1000);
+                } else {
+                    throw new Error(result.error || 'Generation failed');
+                }
+
+            } catch (error) {
+                console.error('API Error:', error);
+                progressText.textContent = 'Generation failed';
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = '<span class="btn-icon">🎬</span>Generate Video from Image';
+                throw error;
+            }
+        }
+
+        function completeTextGeneration(prompt, settings, outputFile) {
+            const progressContainer = document.getElementById('textProgress');
+            const progressText = document.getElementById('textProgressText');
+            const generateBtn = document.querySelector('#textPrompt').closest('.input-panel').querySelector('.generate-btn');
+            const downloadBtn = document.getElementById('textDownloadBtn');
+            const gifBtn = document.getElementById('textGifBtn');
+
+            // Hide progress
+            progressContainer.style.display = 'none';
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = '<span class="btn-icon">🎬</span>Generate Video from Text';
+
+            // Show download buttons
+            downloadBtn.style.display = 'flex';
+            gifBtn.style.display = 'flex';
+
+            // Store output file for download
+            downloadBtn.onclick = () => downloadVideo(outputFile, 'text-to-video');
+            gifBtn.onclick = () => downloadVideo(outputFile, 'text-to-video', 'gif');
+
+            // Create preview
+            createVideoPreview('text', prompt, settings);
+
+            // Add to history
+            const generation = {
+                id: Date.now(),
+                type: 'text',
+                prompt: prompt,
+                settings: settings,
+                output_file: outputFile,
+                timestamp: new Date().toISOString(),
+                status: 'completed'
+            };
+            videoGenerationHistory.unshift(generation);
+            updateHistoryDisplay();
+
+            // Show success notification
+            showNotification('Video generated successfully!', 'success');
+        }
+
+        function completeImageGeneration(prompt, settings, outputFile) {
+            const progressContainer = document.getElementById('imageProgress');
+            const progressText = document.getElementById('imageProgressText');
+            const generateBtn = document.querySelector('#imageInput').closest('.input-panel').querySelector('.generate-btn');
+            const downloadBtn = document.getElementById('imageDownloadBtn');
+            const gifBtn = document.getElementById('imageGifBtn');
+
+            // Hide progress
+            progressContainer.style.display = 'none';
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = '<span class="btn-icon">🎬</span>Generate Video from Image';
+
+            // Show download buttons
+            downloadBtn.style.display = 'flex';
+            gifBtn.style.display = 'flex';
+
+            // Store output file for download
+            downloadBtn.onclick = () => downloadVideo(outputFile, 'image-to-video');
+            gifBtn.onclick = () => downloadVideo(outputFile, 'image-to-video', 'gif');
+
+            // Create preview
+            createVideoPreview('image', prompt, settings);
+
+            // Add to history
+            const generation = {
+                id: Date.now(),
+                type: 'image',
+                prompt: prompt,
+                settings: settings,
+                output_file: outputFile,
+                timestamp: new Date().toISOString(),
+                status: 'completed'
+            };
+            videoGenerationHistory.unshift(generation);
+            updateHistoryDisplay();
+
+            // Show success notification
+            showNotification('Video generated successfully!', 'success');
+        }
+
+        function createVideoPreview(type, prompt, settings) {
+            const preview = document.getElementById(type + 'Preview');
+            const [width, height] = settings.resolution.split('x');
+            
+            // Create a simulated video preview
+            preview.innerHTML = `
+                <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #ff4081, #9c27b0, #2196f3, #00bcd4); 
+                            border-radius: 15px; display: flex; align-items: center; justify-content: center; 
+                            position: relative; overflow: hidden;">
+                    <div style="text-align: center; color: white; z-index: 2;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🎬</div>
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Generated Video</div>
+                        <div style="font-size: 0.9rem; opacity: 0.8;">${width}x${height} • ${settings.fps}fps</div>
+                        <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem;">${prompt.substring(0, 50)}${prompt.length > 50 ? '...' : ''}</div>
+                    </div>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+                                background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>'); 
+                                opacity: 0.3;"></div>
+                </div>
+            `;
+        }
+
+        async function downloadVideo(filename, type, format = 'mp4') {
+            try {
+                const response = await fetch(`${API_BASE_URL}/download/${filename}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Download failed: ${response.status}`);
+                }
+                
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${type}-${Date.now()}.${format}`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification(`${format.toUpperCase()} download started!`, 'success');
+            } catch (error) {
+                console.error('Download error:', error);
+                showNotification('Download failed: ' + error.message, 'error');
+            }
+        }
+
+        function quickAction(action) {
+            const actions = {
+                'instagram-story': {
+                    format: 'Vertical',
+                    duration: 15,
+                    fps: 30,
+                    resolution: '1080x1920',
+                    platform: 'Instagram Stories',
+                    prompt: 'Create a beautiful Instagram story with vibrant colors and smooth animations'
+                },
+                'tiktok-video': {
+                    format: 'Vertical',
+                    duration: 15,
+                    fps: 30,
+                    resolution: '1080x1920',
+                    platform: 'TikTok',
+                    prompt: 'Generate a dynamic TikTok-style video with trending effects and transitions'
+                },
+                'youtube-video': {
+                    format: 'Horizontal',
+                    duration: 30,
+                    fps: 30,
+                    resolution: '1920x1080',
+                    platform: 'YouTube Standard',
+                    prompt: 'Create a professional YouTube video with cinematic quality and smooth motion'
+                },
+                'square-format': {
+                    format: 'Square',
+                    duration: 10,
+                    fps: 30,
+                    resolution: '1024x1024',
+                    platform: 'None',
+                    prompt: 'Generate a universal square format video with balanced composition'
+                }
+            };
+
+            const config = actions[action];
+            if (config) {
+                // Apply settings to text generation
+                document.getElementById('textFormat').value = config.format;
+                document.getElementById('textDuration').value = config.duration;
+                document.getElementById('textFPS').value = config.fps;
+                document.getElementById('textPlatform').value = config.platform;
+                document.getElementById('textPrompt').value = config.prompt;
+                
+                updateTextResolution();
+                document.getElementById('textResolution').value = config.resolution;
+                
+                // Scroll to text generation section
+                document.querySelector('.generator-section').scrollIntoView({ behavior: 'smooth' });
+                
+                showNotification(`Quick action "${action.replace('-', ' ')}" applied!`, 'info');
+            }
+        }
+
+        async function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/history`);
+                if (response.ok) {
+                    const data = await response.json();
+                    videoGenerationHistory = data.history || [];
+                }
+            } catch (error) {
+                console.error('Failed to load history:', error);
+            }
+            
+            if (videoGenerationHistory.length === 0) {
+                historyList.innerHTML = `
+                    <div class="history-placeholder">
+                        <span class="history-icon">📝</span>
+                        <p>No generations yet. Create your first video!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            historyList.innerHTML = videoGenerationHistory.map(generation => `
+                <div class="history-item">
+                    <div class="history-info">
+                        <div class="history-title">${generation.type === 'text' ? 'Text to Video' : 'Image to Video'}</div>
+                        <div class="history-details">
+                            ${generation.prompt ? generation.prompt.substring(0, 60) + (generation.prompt.length > 60 ? '...' : '') : 'No prompt'} • 
+                            ${generation.settings.resolution || 'Unknown'} • ${generation.settings.fps || 'Unknown'}fps • 
+                            ${new Date(generation.created_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                    <div class="history-actions">
+                        <button class="history-btn" onclick="downloadHistoryItem('${generation.output_file}')" title="Download">⬇️</button>
+                        <button class="history-btn" onclick="deleteHistoryItem(${generation.id})" title="Delete">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function downloadHistoryItem(filename) {
+            if (filename) {
+                downloadVideo(filename, 'history-item');
+            }
+        }
+
+        function deleteHistoryItem(id) {
+            if (confirm('Are you sure you want to delete this generation?')) {
+                videoGenerationHistory = videoGenerationHistory.filter(g => g.id !== id);
+                updateHistoryDisplay();
+                showNotification('Generation deleted from history', 'info');
+            }
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all generation history?')) {
+                videoGenerationHistory = [];
+                updateHistoryDisplay();
+                showNotification('History cleared', 'info');
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--gradient-3)' : type === 'error' ? 'var(--gradient-1)' : 'var(--gradient-2)'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 15px;
+                font-weight: 600;
+                z-index: 10000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize video generator
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTextResolution();
+            updateImageResolution();
+            updateHistoryDisplay();
+        });
+
+        // Page navigation functionality
+    </script>
+</body>
+</html>

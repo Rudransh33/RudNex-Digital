@@ -1,0 +1,27 @@
+{
+  "venvPath": "backend",
+  "venv": "venv",
+  "pythonVersion": "3.11",
+  "executionEnvironments": [
+    {
+      "root": "./backend",
+      "extraPaths": ["./backend"]
+    }
+  ],
+  "exclude": [
+    "frontend",
+    "deployment",
+    "node_modules",
+    "**/__pycache__"
+  ]
+}
+
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/pyright/main/packages/pyright/schema/pyrightconfig.schema.json",
+  "venvPath": "backend",
+  "venv": "venv",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": true
+}
+
+

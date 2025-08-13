@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  backend:
+    build: ./backend
+    container_name: rudnex-backend
+    env_file: ./backend/.env.example
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: rudnex-frontend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:stable
+    container_name: rudnex-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - backend
+    restart: unless-stopped
