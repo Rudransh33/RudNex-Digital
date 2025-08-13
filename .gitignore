@@ -1,23 +1,49 @@
-# Python
+# Python virtual environment
 venv/
-__pycache__/
-*.pyc
-
-# Node
-node_modules/
-.next/
-dist/
-build/
-
-# OS-specific
-.DS_Store
-Thumbs.db
-
-# Logs & env
-*.log
 .env
 .env.*
 
-# Others
-uploads/
-outputs/
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# FastAPI build outputs
+backend/uploads/
+backend/outputs/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js build outputs
+.next/
+out/
+dist/
+
+# Logs
+*.log
+logs/
+
+# IDE & editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Backup files
+*~
