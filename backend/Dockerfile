@@ -6,17 +6,20 @@ ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    ffmpeg \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libglib2.0-0 \
-    libgl1-mesa-glx \
-    libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        ffmpeg \
+        libsm6 \
+        libxext6 \
+        libxrender1 \
+        libglib2.0-0 \
+        libgl1 \
+        libgomp1 \
+    ; \
+    rm -rf /var/lib/apt/lists/*
 
 # Set work directory
 WORKDIR /app
