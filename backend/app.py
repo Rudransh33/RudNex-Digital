@@ -15,10 +15,16 @@ import cv2
 from PIL import Image
 import io
 import base64
+from dotenv import load_dotenv
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Load environment variables
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+DATABASE_PATH = os.getenv("DATABASE_PATH")
 
 app = Flask(__name__)
 CORS(app)
