@@ -16,7 +16,7 @@ The VEO3 endpoint is a **hidden admin-only feature** that provides AI-powered vi
 
 ### Method 1: Bearer Token
 ```bash
-curl -X POST "http://localhost:8000/admin/veo3" \
+curl -X POST "https://rudnex.com/admin/veo3" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer rudnex-admin-2025" \
      -d '{"prompt":"Cinematic vampire scene","duration":8,"resolution":"1080p"}'
@@ -25,14 +25,14 @@ curl -X POST "http://localhost:8000/admin/veo3" \
 ### Method 2: Session Cookie
 1. First login to get admin session:
 ```bash
-curl -X POST "http://localhost:8000/api/admin/login" \
+curl -X POST "https://rudnex.com/api/admin/login" \
      -d "username=admin&password=rudnex123" \
      -c cookies.txt
 ```
 
 2. Then use the session for VEO3 requests:
 ```bash
-curl -X POST "http://localhost:8000/admin/veo3" \
+curl -X POST "https://rudnex.com/admin/veo3" \
      -H "Content-Type: application/json" \
      -b cookies.txt \
      -d '{"prompt":"Cinematic vampire scene","duration":8}'
@@ -130,7 +130,7 @@ data = {
 }
 
 response = requests.post(
-    "http://localhost:8000/admin/veo3",
+    "https://rudnex.com/admin/veo3",
     headers=headers,
     json=data
 )
@@ -140,7 +140,7 @@ print(response.json())
 
 ### JavaScript/Node.js
 ```javascript
-const response = await fetch('http://localhost:8000/admin/veo3', {
+const response = await fetch('https://rudnex.com/admin/veo3', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer rudnex-admin-2025',

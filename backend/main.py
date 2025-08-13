@@ -99,10 +99,14 @@ async def admin_session(request: Request):
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure for production
+    allow_origins=[
+        "https://rudnex.com",
+        "https://www.rudnex.com",
+        "https://*.rudnex.com"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 # Security

@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   backend:
-    build: 
-      context: ../backend
-      dockerfile: Dockerfile
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
     ports:
       - "8000:8000"
     environment:
@@ -13,7 +13,7 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - SMTP_SERVER=${SMTP_SERVER:-mail.rudnex.com}
       - SMTP_PORT=${SMTP_PORT:-587}
-      - EMAIL_USER=${EMAIL_USER:-support@rudnex.com}
+      - EMAIL_USER=${EMAIL_USER:-help@rudnex.com}
       - EMAIL_PASSWORD=${EMAIL_PASSWORD}
       - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
       - BACKEND_URL=${BACKEND_URL:-http://localhost:8000}

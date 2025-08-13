@@ -12,4 +12,4 @@ class Config:
     SUPPORT_EMAIL = os.getenv('SUPPORT_EMAIL', 'help@rudnex.com')
     API_RATE_LIMIT = int(os.getenv('API_RATE_LIMIT', 1000))
     ADMIN_TOKEN = os.getenv('ADMIN_TOKEN', 'admin-token')
-    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:3000')
+    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'https://rudnex.com,https://www.rudnex.com')

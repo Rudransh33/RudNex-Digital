@@ -14,7 +14,7 @@ services:
     build: ./frontend
     container_name: rudnex-frontend
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:5000
+      - NEXT_PUBLIC_API_URL=https://rudnex.com
     ports:
       - "3000:3000"
     restart: unless-stopped

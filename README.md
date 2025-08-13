@@ -81,7 +81,7 @@ start-react.bat
 
 ### 4️⃣ Access Points
 
-* **Main Website** → [http://localhost:3000](http://localhost:3000)
+* **Main Website** → [https://rudnex.com](https://rudnex.com)
 
 ---
 

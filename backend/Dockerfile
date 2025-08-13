@@ -21,13 +21,18 @@ RUN apt-get update && apt-get install -y \
 # Set work directory
 WORKDIR /app
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Copy project
+# Copy build context and install Python dependencies (supports root or backend context)
 COPY . .
+RUN pip install --no-cache-dir --upgrade pip && \
+    if [ -f backend/requirements.txt ]; then \
+        pip install --no-cache-dir -r backend/requirements.txt; \
+    elif [ -f requirements.txt ]; then \
+        pip install --no-cache-dir -r requirements.txt; \
+    else \
+        echo "requirements.txt not found" && exit 1; \
+    fi
+
+# (files already copied above)
 
 # Create necessary directories
 RUN mkdir -p uploads outputs content

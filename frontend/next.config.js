@@ -1,23 +1,25 @@
 /** @type {import('next').NextConfig} */
+const API_HOST = process.env.NEXT_PUBLIC_API_URL || 'https://rudnex.com';
 const nextConfig = {
-    reactStrictMode: true,
+	reactStrictMode: true,
   
-    images: {
-      domains: [
-        'rudnexdigital.com',
-        'localhost',
-        'your-s3-bucket.amazonaws.com'
-      ],
-    },
+	images: {
+	  domains: [
+		'rudnex.com',
+		'www.rudnex.com',
+		'localhost',
+		'your-s3-bucket.amazonaws.com'
+	  ],
+	},
   
-    async rewrites() {
-      return [
-        {
-          source: '/api/:path*',
-          destination: 'http://localhost:5000/:path*', // Flask backend
-        },
-      ];
-    },
+	async rewrites() {
+	  return [
+		{
+		  source: '/api/:path*',
+		  destination: `${API_HOST}/api/:path*`, // backend API
+		},
+	  ];
+	},
   };
   
   module.exports = nextConfig;

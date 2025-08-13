@@ -53,21 +53,26 @@ Create `.env` file in backend directory:
 # API Configuration
 SECRET_KEY=rudnex-secret-key-2025-super-secure
 ADMIN_TOKEN=rudnex-admin-2025
-
-
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=change-me
 
 # Email Configuration (Required for contact forms)
 SMTP_SERVER=mail.rudnex.com
 SMTP_PORT=587
 EMAIL_USER=help@rudnex.com
-EMAIL_PASSWORD=your-gmail-app-password
+EMAIL_PASSWORD=your-smtp-password
 
 # Production URLs
 FRONTEND_URL=https://rudnex.com
-BACKEND_URL=https://api.rudnex.com
+BACKEND_URL=https://rudnex.com
 
-# Database (SQLite default, can switch to PostgreSQL for production)
-DATABASE_URL=sqlite:///./rudnex_digital.db
+# CORS
+CORS_ORIGINS=https://rudnex.com,https://www.rudnex.com
+
+# Database (SQLite default)
+DATABASE_PATH=./rudnex_digital.db
+
+# Note: This project does NOT include any chatbot or OpenAI features. No chatbot keys required.
 ```
 
 ### 2. Backend Setup (FastAPI)
