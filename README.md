@@ -13,12 +13,10 @@ A secure, AI-powered content creation and management platform with modern web te
 
 ### Backend (FastAPI)
 
-* **Admin-Only Veo 3 Video Generator** – Hidden video creation tool accessible only with admin authentication
 * **Text-to-Speech** – High-quality AI voice generation
 * **Email Handling** – Contact form automation
 * **Analytics Dashboard** – Real-time usage tracking
 * **Content Library** – Manage generated media
-* **Secure Admin Panel** – Token-based access control
 
 ### Apps Showcased
 
@@ -84,21 +82,10 @@ start-react.bat
 ### 4️⃣ Access Points
 
 * **Main Website** → [http://localhost:3000](http://localhost:3000)
-* **API Docs** → [http://localhost:8000/docs](http://localhost:8000/docs)
-* **Admin Panel (Veo 3 Video Generator)** → [http://localhost:8000/admin](http://localhost:8000/admin) *(Admin token required)*
 
 ---
 
-## 🔒 Security & Authentication
-
-* Admin-only video generator endpoint is **hidden** and not linked from the public UI.
-* Protected routes require Bearer token authentication.
-
-Example request:
-
-```http
-Authorization: Bearer rudnex-admin-2025
-```
+ 
 
 ---
 
@@ -107,10 +94,9 @@ Authorization: Bearer rudnex-admin-2025
 ```
 rudnexdigital/
 ├── backend/                 # FastAPI Backend
-│   ├── main.py              # Main FastAPI app
+│   ├── main.py              # FastAPI app
 │   ├── requirements.txt     # Python dependencies
-│   ├── templates/
-│   │   └── admin_veo3.html  # Admin-only video generator
+│   ├── templates/           # Backend HTML templates
 │   ├── uploads/             # File uploads
 │   ├── outputs/             # Generated files
 │   └── content/             # Static content
@@ -135,13 +121,6 @@ rudnexdigital/
 * `POST /api/contact` – Contact form
 * `POST /api/analytics` – Track analytics
 
-### Admin (Protected)
-
-* `POST /api/admin/generate-video` – **Admin-only Veo 3 video generator**
-* `POST /api/admin/generate-audio` – Generate audio
-* `GET /api/admin/content-library` – View generated files
-* `GET /api/admin/analytics` – Admin analytics
-
 ---
 
 ## 📊 Database Schema
@@ -156,8 +135,19 @@ rudnexdigital/
 
 * ✅ Moved to FastAPI backend
 * ✅ React/Next.js frontend
-* ✅ **Admin-only Veo 3 video generator** with token security
 * ✅ Analytics system upgraded
 * ✅ File structure updated for modularity
+
+---
+
+## 🆘 Support
+
+For help or questions, email: help@rudnex.com
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License. See `LICENSE` for details.
 
 ---
