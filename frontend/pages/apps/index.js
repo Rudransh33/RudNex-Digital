@@ -12,8 +12,9 @@ export default function Apps() {
       description: 'Stay organized with our powerful offline ToDo app with multi-language support, reminders, and categories',
       icon: '✅',
       category: 'Productivity',
-      status: 'Live',
-      features: ['Offline Sync', 'Multi-language', 'Smart Reminders', 'Task Categories', 'Priority Levels']
+      status: 'Coming Soon',
+      features: ['Offline Sync', 'Multi-language', 'Smart Reminders', 'Task Categories', 'Priority Levels'],
+      releaseDate: 'Q2 2024'
     },
     {
       id: 'audio-story',
@@ -21,8 +22,9 @@ export default function Apps() {
       description: 'Immerse yourself in captivating audio stories and dramas with high-quality narration',
       icon: '🎧',
       category: 'Entertainment',
-      status: 'Live',
-      features: ['High-quality Audio', 'Diverse Stories', 'Offline Listening', 'Background Play', 'Bookmarks']
+      status: 'Coming Soon',
+      features: ['High-quality Audio', 'Diverse Stories', 'Offline Listening', 'Background Play', 'Bookmarks'],
+      releaseDate: 'Q3 2024'
     }
   ]
 
@@ -103,9 +105,7 @@ export default function Apps() {
               <div key={app.id} className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-purple-400/50 transition-all hover:transform hover:scale-105">
                 <div className="flex items-start justify-between mb-6">
                   <div className="text-6xl">{app.icon}</div>
-                  <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                    app.status === 'Live' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-                  }`}>
+                  <div className="px-3 py-1 rounded-full text-sm font-semibold bg-yellow-500/20 text-yellow-400">
                     {app.status}
                   </div>
                 </div>
@@ -116,6 +116,9 @@ export default function Apps() {
                 <div className="mb-6">
                   <span className="inline-block bg-purple-500/20 text-purple-400 px-3 py-1 rounded text-sm font-medium">
                     {app.category}
+                  </span>
+                  <span className="inline-block bg-blue-500/20 text-blue-400 px-3 py-1 rounded text-sm font-medium ml-2">
+                    {app.releaseDate}
                   </span>
                 </div>
 
@@ -133,7 +136,7 @@ export default function Apps() {
 
                 <div className="text-center">
                   <Link href={`/apps/${app.id}`} className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                    {app.status === 'Live' ? 'Try it now' : 'Learn more'}
+                    Learn More
                   </Link>
                 </div>
               </div>
@@ -147,6 +150,19 @@ export default function Apps() {
               <p className="text-gray-300">Try adjusting your search terms</p>
             </div>
           )}
+
+          {/* Coming Soon CTA */}
+          <div className="text-center mt-16">
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+              <h2 className="text-3xl font-bold text-white mb-4">Excited About Our Apps?</h2>
+              <p className="text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
+                Our apps are currently in development. Join our waitlist to be the first to know when they launch!
+              </p>
+              <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105">
+                Join Waitlist
+              </Link>
+            </div>
+          </div>
         </div>
       </main>
 

@@ -16,7 +16,7 @@ export default function AppDetail() {
       description: 'Stay organized with our powerful offline ToDo app with multi-language support, reminders, and categories',
       icon: '✅',
       category: 'Productivity',
-      status: 'Live',
+      status: 'Coming Soon',
       features: ['Offline Sync', 'Multi-language', 'Smart Reminders', 'Task Categories', 'Priority Levels'],
       longDescription: 'Stay organized and boost your productivity with our comprehensive ToDo List app. Designed for modern life, it works seamlessly offline and syncs when you\'re back online. Available in multiple languages, it helps you manage tasks, set reminders, and organize your life with ease.',
       screenshots: [
@@ -25,7 +25,8 @@ export default function AppDetail() {
         { title: 'Reminders', description: 'Smart reminder system to keep you on track' }
       ],
       downloadUrl: '#',
-      demoUrl: '/apps/todo-app/demo'
+      demoUrl: '#',
+      releaseDate: 'Q2 2024'
     },
     'audio-story': {
       id: 'audio-story',
@@ -33,7 +34,7 @@ export default function AppDetail() {
       description: 'Immerse yourself in captivating audio stories and dramas with high-quality narration',
       icon: '🎧',
       category: 'Entertainment',
-      status: 'Live',
+      status: 'Coming Soon',
       features: ['High-quality Audio', 'Diverse Stories', 'Offline Listening', 'Background Play', 'Bookmarks'],
       longDescription: 'Escape into a world of captivating stories with our Audio Story app. Featuring professionally narrated content across various genres, from thrilling mysteries to heartwarming tales. Listen anywhere, anytime with offline support and background playback.',
       screenshots: [
@@ -42,7 +43,8 @@ export default function AppDetail() {
         { title: 'Offline Mode', description: 'Download stories for offline listening' }
       ],
       downloadUrl: '#',
-      demoUrl: '/apps/audio-story/demo'
+      demoUrl: '#',
+      releaseDate: 'Q3 2024'
     }
   }
 
@@ -117,12 +119,19 @@ export default function AppDetail() {
             <div className="text-8xl mb-6">{app.icon}</div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{app.name}</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">{app.description}</p>
+            
+            {/* Coming Soon Badge */}
+            <div className="inline-flex items-center bg-yellow-500/20 text-yellow-400 px-6 py-3 rounded-full text-lg font-semibold mb-6">
+              <span className="mr-2">🚀</span>
+              Coming Soon - {app.releaseDate}
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={app.downloadUrl} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
-                Download App
+              <Link href="/contact" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                Join Waitlist
               </Link>
-              <Link href={app.demoUrl} className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
-                Try Demo
+              <Link href="/contact" className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                Get Notified
               </Link>
             </div>
           </div>
@@ -155,11 +164,13 @@ export default function AppDetail() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-300">Status:</span>
-                    <span className={`px-2 py-1 rounded text-sm font-semibold ${
-                      app.status === 'Live' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
-                    }`}>
+                    <span className="px-2 py-1 rounded text-sm font-semibold bg-yellow-500/20 text-yellow-400">
                       {app.status}
                     </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-300">Expected Release:</span>
+                    <span className="text-white">{app.releaseDate}</span>
                   </div>
                 </div>
               </div>
@@ -167,12 +178,15 @@ export default function AppDetail() {
 
             {/* Screenshots */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-6">App Screenshots</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">App Preview</h2>
               <div className="space-y-6">
                 {app.screenshots.map((screenshot, index) => (
                   <div key={index} className="bg-white/5 rounded-lg p-6">
                     <div className="bg-gray-800 rounded-lg h-48 mb-4 flex items-center justify-center">
-                      <span className="text-gray-400 text-lg">Screenshot {index + 1}</span>
+                      <div className="text-center">
+                        <span className="text-gray-400 text-lg block mb-2">📱</span>
+                        <span className="text-gray-400 text-sm">Preview Coming Soon</span>
+                      </div>
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{screenshot.title}</h3>
                     <p className="text-gray-300">{screenshot.description}</p>
@@ -182,15 +196,15 @@ export default function AppDetail() {
             </div>
           </div>
 
-          {/* CTA Section */}
+          {/* Coming Soon CTA Section */}
           <div className="text-center bg-white/5 rounded-xl p-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">Be the First to Know!</h2>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Download {app.name} now and experience the difference it can make in your daily routine.
+              {app.name} is currently in development. Join our waitlist to get early access and exclusive updates when it launches.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={app.downloadUrl} className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105">
-                Download Now
+              <Link href="/contact" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105">
+                Join Waitlist
               </Link>
               <Link href="/apps" className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                 View All Apps

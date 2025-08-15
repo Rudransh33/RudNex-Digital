@@ -88,7 +88,7 @@ export default function Home() {
                 Stay organized with our ToDo app and immerse yourself in captivating audio stories.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/apps" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                <Link href="#apps" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                   Explore Our Apps
                 </Link>
                 <Link href="/contact" className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
@@ -100,7 +100,7 @@ export default function Home() {
         </section>
 
         {/* Apps Section */}
-        <section className="py-20 bg-black/20">
+        <section id="apps" className="py-20 bg-black/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-white mb-4">
@@ -140,7 +140,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <Link href="/apps/todo-app" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                    Try ToDo App
+                    View App Details
                   </Link>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <Link href="/apps/audio-story" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                    Listen to Stories
+                    View App Details
                   </Link>
                 </div>
               </div>
