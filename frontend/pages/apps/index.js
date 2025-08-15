@@ -4,79 +4,39 @@ import Link from 'next/link'
 
 export default function Apps() {
   const [searchTerm, setSearchTerm] = useState('')
-  const [isAdmin, setIsAdmin] = useState(false)
-
-  useEffect(() => {
-    const localFlag = typeof window !== 'undefined' && localStorage.getItem('rudnex_admin') === '1'
-    fetch('/api/admin/session', { credentials: 'include' })
-      .then((res) => res.json())
-      .then((data) => setIsAdmin(Boolean(data?.authenticated) || localFlag))
-      .catch(() => setIsAdmin(localFlag))
-  }, [])
   
   const apps = [
     {
-      id: 'video-generator',
-      name: 'AI Video Generator',
-      description: 'Create stunning videos from text prompts or images with advanced AI technology',
-      icon: '🎬',
-      category: 'AI',
-      status: 'Live',
-      features: ['Text-to-Video', 'Image-to-Video', 'Multiple Formats', 'Platform Optimization']
-    },
-    {
-      id: 'content-creator',
-      name: 'Content Creator',
-      description: 'Generate engaging content, articles, and social media posts with AI assistance',
-      icon: '✍️',
-      category: 'AI',
-      status: 'Coming Soon',
-      features: ['Article Generation', 'Social Media Posts', 'Content Optimization', 'SEO Tools']
-    },
-    {
-      id: 'image-editor',
-      name: 'AI Image Editor',
-      description: 'Edit and enhance images with AI-powered tools and filters',
-      icon: '🎨',
-      category: 'AI',
-      status: 'Coming Soon',
-      features: ['AI Enhancement', 'Background Removal', 'Style Transfer', 'Batch Processing']
-    },
-    {
-      id: 'audio-drama',
-      name: 'Audio Drama Generator',
-      description: 'Create immersive audio dramas and podcasts with AI voice synthesis',
-      icon: '🎭',
-      category: 'Audio',
-      status: 'Live',
-      features: ['Voice Synthesis', 'Script Generation', 'Sound Effects', 'Multi-Character']
-    },
-    {
       id: 'todo-app',
-      name: 'Offline ToDo',
-      description: 'Multilingual todo app with reminders and offline functionality',
+      name: 'ToDo List App',
+      description: 'Stay organized with our powerful offline ToDo app with multi-language support, reminders, and categories',
       icon: '✅',
       category: 'Productivity',
       status: 'Live',
-      features: ['Offline Sync', 'Multi-language', 'Reminders', 'Categories']
+      features: ['Offline Sync', 'Multi-language', 'Smart Reminders', 'Task Categories', 'Priority Levels']
+    },
+    {
+      id: 'audio-story',
+      name: 'Audio Story App',
+      description: 'Immerse yourself in captivating audio stories and dramas with high-quality narration',
+      icon: '🎧',
+      category: 'Entertainment',
+      status: 'Live',
+      features: ['High-quality Audio', 'Diverse Stories', 'Offline Listening', 'Background Play', 'Bookmarks']
     }
   ]
 
-  const filteredApps = apps
-    .filter(app => (app.id !== 'video-generator') || isAdmin)
-    .filter(app => 
+  const filteredApps = apps.filter(app => 
     app.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     app.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
     app.category.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  const categories = [...new Set(apps.map(app => app.category))]
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Head>
-        <title>Apps - Rudnex Digital Hub</title>
-        <meta name="description" content="Explore our suite of AI-powered applications and digital tools" />
+        <title>Apps - Rudnex Digital</title>
+        <meta name="description" content="Explore our ToDo List and Audio Story apps for productivity and entertainment" />
       </Head>
 
       {/* Header */}
@@ -86,7 +46,7 @@ export default function Apps() {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Link href="/" className="text-2xl font-bold text-white">
-                  <span className="text-purple-400">Rudnex</span> Digital Hub
+                  <span className="text-purple-400">Rudnex</span> Digital
                 </Link>
               </div>
             </div>
@@ -101,9 +61,6 @@ export default function Apps() {
               <Link href="/contact" className="text-white hover:text-purple-400 transition-colors">
                 Contact
               </Link>
-              <Link href="/docs" className="text-white hover:text-purple-400 transition-colors">
-                Docs
-              </Link>
             </nav>
           </div>
         </div>
@@ -115,14 +72,14 @@ export default function Apps() {
           {/* Page Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Our Applications
+              Our Apps
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Discover our suite of AI-powered applications designed to enhance your digital workflow and creativity.
+              Two essential apps designed to enhance your daily productivity and entertainment.
             </p>
           </div>
 
-          {/* Search and Filter */}
+          {/* Search */}
           <div className="mb-8">
             <div className="max-w-md mx-auto">
               <div className="relative">
@@ -141,41 +98,44 @@ export default function Apps() {
           </div>
 
           {/* Apps Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {filteredApps.map((app) => (
-              <div key={app.id} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-purple-400/50 transition-all hover:transform hover:scale-105">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="text-4xl">{app.icon}</div>
-                  <div className={`px-2 py-1 rounded-full text-xs font-semibold ${
+              <div key={app.id} className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-purple-400/50 transition-all hover:transform hover:scale-105">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="text-6xl">{app.icon}</div>
+                  <div className={`px-3 py-1 rounded-full text-sm font-semibold ${
                     app.status === 'Live' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
                   }`}>
                     {app.status}
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-white mb-2">{app.name}</h3>
-                <p className="text-gray-300 mb-4 text-sm">{app.description}</p>
+                <h3 className="text-2xl font-semibold text-white mb-3">{app.name}</h3>
+                <p className="text-gray-300 mb-6">{app.description}</p>
                 
-                <div className="mb-4">
-                  <span className="inline-block bg-purple-500/20 text-purple-400 px-2 py-1 rounded text-xs font-medium">
+                <div className="mb-6">
+                  <span className="inline-block bg-purple-500/20 text-purple-400 px-3 py-1 rounded text-sm font-medium">
                     {app.category}
                   </span>
                 </div>
 
-                <div className="mb-4">
-                  <h4 className="text-white font-medium mb-2 text-sm">Features:</h4>
-                  <div className="flex flex-wrap gap-1">
+                <div className="mb-6">
+                  <h4 className="text-white font-medium mb-3">Key Features:</h4>
+                  <div className="grid grid-cols-2 gap-2">
                     {app.features.map((feature, index) => (
-                      <span key={index} className="bg-white/10 text-gray-300 px-2 py-1 rounded text-xs">
+                      <div key={index} className="flex items-center text-gray-300 text-sm">
+                        <span className="text-green-400 mr-2">✓</span>
                         {feature}
-                      </span>
+                      </div>
                     ))}
                   </div>
                 </div>
 
-                <Link href={`/apps/${app.id}`} className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors font-medium">
-                  {app.status === 'Live' ? 'Try it now' : 'Learn more'} →
-                </Link>
+                <div className="text-center">
+                  <Link href={`/apps/${app.id}`} className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    {app.status === 'Live' ? 'Try it now' : 'Learn more'}
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -194,7 +154,7 @@ export default function Apps() {
       <footer className="bg-black/40 border-t border-white/10 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-300">
-            <p>&copy; 2024 Rudnex Digital Hub. All rights reserved.</p>
+            <p>&copy; 2024 Rudnex Digital. All rights reserved.</p>
           </div>
         </div>
       </footer>
