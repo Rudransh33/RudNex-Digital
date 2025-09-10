@@ -11,7 +11,7 @@ export default function Home() {
         <title>Rudnex Digital - ToDo & Audio Story Apps</title>
         <meta name="description" content="Simple and powerful ToDo List app and immersive Audio Story app for your daily productivity and entertainment." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 
       {/* Header */}
