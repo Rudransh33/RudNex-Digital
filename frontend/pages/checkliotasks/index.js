@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 
 export default function ChecklioTasksLanding() {
+  const assetVersion = process.env.NEXT_PUBLIC_ASSET_VERSION || 'v=1'
   const [lightboxIdx, setLightboxIdx] = useState(null)
   const screenshots = [
     { src: '/checkliotasks/01-tasks.jpg', title: 'Task Management Dashboard', desc: 'View all your tasks with priority indicators, completion status, and smart organization.' },
@@ -23,11 +24,11 @@ export default function ChecklioTasksLanding() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
         <meta name="description" content="Checklio Tasks is the intelligent task management app that transforms chaos into clarity. Organize, prioritize, and accomplish your goals with smart suggestions and intuitive planning." />
-        <link rel="icon" type="image/jpeg" href="/checkliotasks/logo.jpg" />
-        <link rel="icon" type="image/jpeg" sizes="32x32" href="/checkliotasks/logo.jpg" />
-        <link rel="icon" type="image/jpeg" sizes="16x16" href="/checkliotasks/logo.jpg" />
-        <link rel="shortcut icon" type="image/jpeg" href="/checkliotasks/logo.jpg" />
-        <link rel="apple-touch-icon" href="/checkliotasks/logo.jpg" />
+        <link rel="icon" type="image/jpeg" href={`/checkliotasks/logo.jpg?${assetVersion}`} />
+        <link rel="icon" type="image/jpeg" sizes="32x32" href={`/checkliotasks/logo.jpg?${assetVersion}`} />
+        <link rel="icon" type="image/jpeg" sizes="16x16" href={`/checkliotasks/logo.jpg?${assetVersion}`} />
+        <link rel="shortcut icon" type="image/jpeg" href={`/checkliotasks/logo.jpg?${assetVersion}`} />
+        <link rel="apple-touch-icon" href={`/checkliotasks/logo.jpg?${assetVersion}`} />
       </Head>
 
       <style jsx global>{`
