@@ -12,13 +12,13 @@ export default function AppDetail() {
   const apps = {
     'todo-app': {
       id: 'todo-app',
-      name: 'ToDo List App',
-      description: 'Stay organized with our powerful offline ToDo app with multi-language support, reminders, and categories',
+      name: 'Checklio Tasks',
+      description: 'Stay organized with our powerful offline Checklio Tasks app with multi-language support, reminders, and categories',
       icon: '✅',
       category: 'Productivity',
       status: 'Coming Soon',
       features: ['Offline Sync', 'Multi-language', 'Smart Reminders', 'Task Categories', 'Priority Levels'],
-      longDescription: 'Stay organized and boost your productivity with our comprehensive ToDo List app. Designed for modern life, it works seamlessly offline and syncs when you\'re back online. Available in multiple languages, it helps you manage tasks, set reminders, and organize your life with ease.',
+      longDescription: 'Stay organized and boost your productivity with Checklio Tasks. Designed for modern life, it works seamlessly offline and syncs when you\'re back online. Available in multiple languages, it helps you manage tasks, set reminders, and organize your life with ease.',
       screenshots: [
         { title: 'Main Dashboard', description: 'Clean interface showing all your tasks' },
         { title: 'Task Creation', description: 'Easy task creation with categories and priorities' },

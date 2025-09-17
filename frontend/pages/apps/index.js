@@ -8,8 +8,8 @@ export default function Apps() {
   const apps = [
     {
       id: 'todo-app',
-      name: 'ToDo List App',
-      description: 'Stay organized with our powerful offline ToDo app with multi-language support, reminders, and categories',
+      name: 'Checklio Tasks',
+      description: 'Stay organized with our powerful offline Checklio Tasks app with multi-language support, reminders, and categories',
       icon: '✅',
       category: 'Productivity',
       status: 'Coming Soon',
@@ -38,7 +38,7 @@ export default function Apps() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Head>
         <title>Apps - Rudnex Digital</title>
-        <meta name="description" content="Explore our ToDo List and Audio Story apps for productivity and entertainment" />
+        <meta name="description" content="Explore Checklio Tasks and Audio Story apps for productivity and entertainment" />
       </Head>
 
       {/* Header */}
@@ -135,9 +135,15 @@ export default function Apps() {
                 </div>
 
                 <div className="text-center">
-                  <Link href={`/apps/${app.id}`} className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                    Learn More
-                  </Link>
+                  {app.id === 'todo-app' ? (
+                    <Link href="/checkliotasks" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                      Learn More
+                    </Link>
+                  ) : (
+                    <Link href={`/apps/${app.id}`} className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                      Learn More
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

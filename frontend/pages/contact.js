@@ -44,7 +44,7 @@ export default function Contact() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Head>
         <title>Contact - Rudnex Digital</title>
-        <meta name="description" content="Get in touch with us for support or questions about our ToDo and Audio Story apps" />
+        <meta name="description" content="Get in touch with us for support or questions about Checklio Tasks and Audio Story apps" />
       </Head>
 
       {/* Header */}
@@ -187,10 +187,10 @@ export default function Contact() {
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10">
                 <h2 className="text-2xl font-bold text-white mb-6">Our Apps</h2>
                 <div className="space-y-4">
-                  <Link href="/apps/todo-app" className="flex items-center p-4 rounded-lg hover:bg-white/5 transition-colors">
+                  <Link href="/checkliotasks" className="flex items-center p-4 rounded-lg hover:bg-white/5 transition-colors">
                     <span className="text-2xl mr-4">✅</span>
                     <div>
-                      <div className="font-medium text-white">ToDo List App</div>
+                    <div className="font-medium text-white">Checklio Tasks</div>
                       <div className="text-gray-300 text-sm">Stay organized and productive</div>
                     </div>
                   </Link>

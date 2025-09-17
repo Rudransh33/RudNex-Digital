@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Head>
-        <title>Rudnex Digital - ToDo & Audio Story Apps</title>
-        <meta name="description" content="Simple and powerful ToDo List app and immersive Audio Story app for your daily productivity and entertainment." />
+        <title>Rudnex Digital - Checklio Tasks & Audio Story Apps</title>
+        <meta name="description" content="Simple and powerful Checklio Tasks app and immersive Audio Story app for your daily productivity and entertainment." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
@@ -85,11 +85,11 @@ export default function Home() {
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
                 Simple, powerful apps for your daily productivity and entertainment. 
-                Stay organized with our ToDo app and immerse yourself in captivating audio stories.
+                Stay organized with Checklio Tasks and immerse yourself in captivating audio stories.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="#apps" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
-                  Explore Our Apps
+                <Link href="/checkliotasks" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                  Checklio Tasks
                 </Link>
                 <Link href="/contact" className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                   Get Started
@@ -112,12 +112,12 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* ToDo App */}
+              {/* Checklio Tasks */}
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-purple-400/50 transition-all">
                 <div className="text-purple-400 text-6xl mb-6 text-center">✅</div>
-                <h3 className="text-2xl font-semibold text-white mb-4 text-center">ToDo List App</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4 text-center">Checklio Tasks</h3>
                 <p className="text-gray-300 mb-6 text-center">
-                  Stay organized with our powerful offline ToDo app. Features multi-language support, 
+                  Stay organized with our powerful offline Checklio Tasks app. Features multi-language support, 
                   reminders, categories, and seamless offline sync.
                 </p>
                 <div className="space-y-3 mb-6">
@@ -139,7 +139,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <Link href="/apps/todo-app" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                  <Link href="/checkliotasks" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                     View App Details
                   </Link>
                 </div>
@@ -212,7 +212,7 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold mb-4">Apps</h4>
               <ul className="space-y-2 text-gray-300">
-                <li><Link href="/apps/todo-app" className="hover:text-purple-400 transition-colors">ToDo List</Link></li>
+                <li><Link href="/apps/todo-app" className="hover:text-purple-400 transition-colors">Checklio Tasks</Link></li>
                 <li><Link href="/apps/audio-story" className="hover:text-purple-400 transition-colors">Audio Stories</Link></li>
               </ul>
             </div>
