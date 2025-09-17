@@ -7,6 +7,7 @@ export default function ChecklioPrivacy() {
         <title>Privacy Policy — Checklio Tasks</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Privacy Policy for Checklio Tasks (com.rudnex.checkliotasks)" />
+        <link rel="canonical" href="https://rudnex.com/checkliotasks/privacy" />
       </Head>
 
       <main className="max-w-3xl mx-auto px-6 py-10">
@@ -67,6 +68,9 @@ export default function ChecklioPrivacy() {
         <p className="mb-12">Host / publisher: Rudnex</p>
 
         <p className="text-[#555] text-sm">This application was made with assistance from an AI agent (Cursor).</p>
+        <div className="mt-10 pt-6 border-t border-gray-200">
+          <a href="/checkliotasks" className="text-[#555] hover:text-[#111]">← Back to Checklio Tasks</a>
+        </div>
       </main>
     </div>
   )

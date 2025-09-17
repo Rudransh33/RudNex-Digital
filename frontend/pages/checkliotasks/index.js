@@ -226,6 +226,9 @@ export default function ChecklioTasksLanding() {
         <div className="container">
           <p>© 2024 Rudnex. All rights reserved. | Checklio Tasks - Smart Task Management</p>
           <p style={{ marginTop: '1rem' }}>Visit us at <a href="https://rudnex.com" style={{ color: '#ff6b6b' }}>rudnex.com</a></p>
+          <p style={{ marginTop: '0.5rem' }}>
+            <a href="/checkliotasks/privacy" style={{ color: '#ffd166' }}>Privacy Policy</a>
+          </p>
         </div>
       </footer>
 
