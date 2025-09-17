@@ -23,6 +23,8 @@ export default function ChecklioTasksLanding() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="utf-8" />
         <meta name="description" content="Checklio Tasks is the intelligent task management app that transforms chaos into clarity. Organize, prioritize, and accomplish your goals with smart suggestions and intuitive planning." />
+        <link rel="icon" type="image/jpeg" href="/checkliotasks/logo.jpg" />
+        <link rel="apple-touch-icon" href="/checkliotasks/logo.jpg" />
       </Head>
 
       <style jsx global>{`

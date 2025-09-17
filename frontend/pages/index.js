@@ -218,7 +218,7 @@ export default function Home() {
             <div>
               <h4 className="text-white font-semibold mb-4">Apps</h4>
               <ul className="space-y-2 text-gray-300">
-                <li><Link href="/apps/todo-app" className="hover:text-purple-400 transition-colors">Checklio Tasks</Link></li>
+                <li><Link href="/checkliotasks" className="hover:text-purple-400 transition-colors">Checklio Tasks</Link></li>
                 <li><Link href="/apps/audio-story" className="hover:text-purple-400 transition-colors">Audio Stories</Link></li>
               </ul>
             </div>
