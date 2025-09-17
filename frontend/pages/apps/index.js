@@ -57,6 +57,9 @@ export default function Apps() {
               <Link href="/" className="text-white hover:text-purple-400 transition-colors">
                 Home
               </Link>
+              <Link href="/checkliotasks#screenshots" className="text-white hover:text-purple-400 transition-colors">
+                Screenshots
+              </Link>
               <Link href="/apps" className="text-purple-400 font-semibold">
                 Apps
               </Link>

@@ -31,6 +31,9 @@ export default function Home() {
               <Link href="/" className="text-white hover:text-purple-400 transition-colors">
                 Home
               </Link>
+              <Link href="/checkliotasks#screenshots" className="text-white hover:text-purple-400 transition-colors">
+                Screenshots
+              </Link>
               <Link href="/apps" className="text-white hover:text-purple-400 transition-colors">
                 Apps
               </Link>
@@ -58,6 +61,9 @@ export default function Home() {
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/50 rounded-lg mt-2">
                 <Link href="/" className="block px-3 py-2 text-white hover:text-purple-400 transition-colors">
                   Home
+                </Link>
+                <Link href="/checkliotasks#screenshots" className="block px-3 py-2 text-white hover:text-purple-400 transition-colors">
+                  Screenshots
                 </Link>
                 <Link href="/apps" className="block px-3 py-2 text-white hover:text-purple-400 transition-colors">
                   Apps

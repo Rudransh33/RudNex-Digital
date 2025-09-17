@@ -63,6 +63,9 @@ export default function Contact() {
               <Link href="/" className="text-white hover:text-purple-400 transition-colors">
                 Home
               </Link>
+              <Link href="/checkliotasks#screenshots" className="text-white hover:text-purple-400 transition-colors">
+                Screenshots
+              </Link>
               <Link href="/apps" className="text-white hover:text-purple-400 transition-colors">
                 Apps
               </Link>

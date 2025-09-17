@@ -1,6 +1,16 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function ChecklioTasksLanding() {
+  const [lightboxIdx, setLightboxIdx] = useState(null)
+  const screenshots = [
+    { src: '/checkliotasks/01-tasks.jpg', title: 'Task Management Dashboard', desc: 'View all your tasks with priority indicators, completion status, and smart organization.' },
+    { src: '/checkliotasks/02-notes.jpg', title: 'Notes Editor', desc: 'Write and format notes. Bold, italic, underline and list tooling at your fingertips.' },
+    { src: '/checkliotasks/03-to-planned.jpg', title: 'Weekly Planning', desc: 'Plan your week with dedicated sections for each day and create task sets.' },
+    { src: '/checkliotasks/04-suggestions.jpg', title: 'Smart Suggestions', desc: 'Daily wisdom and personalized ideas like "Lunch & Learn" for productivity.' },
+    { src: '/checkliotasks/05-weekend.jpg', title: 'Weekend Planner', desc: 'Organize Saturday and Sunday with separate sections and labels.' },
+    { src: '/checkliotasks/06-settings.jpg', title: 'Customizable Settings', desc: 'Biometric lock, alarm priorities, ringtones, volumes, and themes.' }
+  ]
   const handleComingSoon = (e) => {
     e.preventDefault()
     alert('Checklio Tasks is coming soon!')
@@ -43,11 +53,20 @@ export default function ChecklioTasksLanding() {
         .feature-icon { width: 60px; height: 60px; margin: 0 auto 1rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem; }
         .feature-card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50; }
         .screenshots { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 80px 0; }
-        .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .screenshot { background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); transition: transform 0.3s; }
-        .screenshot:hover { transform: scale(1.02); }
-        .screenshot img { width: 100%; height: auto; border-radius: 15px; }
-        .screenshot h4 { margin-top: 1rem; font-size: 1.1rem; font-weight: 600; color: #2c3e50; text-align: center; }
+        .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .screenshot { background: white; padding: 1rem; border-radius: 16px; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+        .screenshot:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(0,0,0,0.12); }
+        .screenshot img { width: 100%; height: auto; border-radius: 12px; display: block; }
+        .screenshot h4 { margin-top: 0.75rem; font-size: 1rem; font-weight: 600; color: #2c3e50; text-align: center; }
+        .screenshot p { margin-top: 0.25rem; font-size: 0.9rem; color: #475569; text-align: center; }
+
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+        .lightbox-content { max-width: 96vw; max-height: 90vh; color: #e2e8f0; }
+        .lightbox-img { max-width: 96vw; max-height: 70vh; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); display: block; margin: 0 auto; }
+        .lightbox-caption { margin-top: 12px; text-align: center; }
+        .lightbox-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        .lb-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 10px 14px; border-radius: 9999px; cursor: pointer; }
         .app-highlights { background: #2c3e50; color: white; padding: 80px 0; }
         .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .highlight { text-align: center; padding: 2rem; }
@@ -127,31 +146,30 @@ export default function ChecklioTasksLanding() {
         <div className="container">
           <h2 className="section-title">See Checklio Tasks in Action</h2>
           <div className="screenshots-grid">
-            <div className="screenshot">
-              <h4>Task Management Dashboard</h4>
-              <p>View all your tasks with priority indicators, completion status, and smart organization. The clean interface makes task management effortless.</p>
-            </div>
-            <div className="screenshot">
-              <h4>Smart Suggestions</h4>
-              <p>Receive personalized daily suggestions like "Lunch & Learn" to boost both productivity and personal development throughout your day.</p>
-            </div>
-            <div className="screenshot">
-              <h4>Notes Integration</h4>
-              <p>Seamlessly capture thoughts and ideas with the integrated notes feature. Switch between tasks and notes with a single tap.</p>
-            </div>
-            <div className="screenshot">
-              <h4>Weekly Planning</h4>
-              <p>Plan your entire week with dedicated sections for each day. Create task sets and organize your workflow for maximum efficiency.</p>
-            </div>
-            <div className="screenshot">
-              <h4>Task Set Management</h4>
-              <p>Group related tasks into sets for better organization. Track progress with visual indicators and add new tasks easily.</p>
-            </div>
-            <div className="screenshot">
-              <h4>Customizable Settings</h4>
-              <p>Personalize your experience with dark/light themes, notification preferences, security settings, and priority-based alarms.</p>
-            </div>
+            {screenshots.map((shot, idx) => (
+              <div key={idx} className="screenshot" onClick={() => setLightboxIdx(idx)}>
+                <img src={shot.src} alt={shot.title} />
+                <h4>{shot.title}</h4>
+                <p>{shot.desc}</p>
+              </div>
+            ))}
           </div>
+          {lightboxIdx !== null && (
+            <div className="lightbox" onClick={() => setLightboxIdx(null)}>
+              <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                <img className="lightbox-img" src={screenshots[lightboxIdx].src} alt={screenshots[lightboxIdx].title} />
+                <div className="lightbox-caption">
+                  <div style={{ fontWeight: 700, fontSize: '1.1rem' }}>{screenshots[lightboxIdx].title}</div>
+                  <div style={{ opacity: 0.9 }}>{screenshots[lightboxIdx].desc}</div>
+                </div>
+                <div className="lightbox-controls">
+                  <button className="lb-btn" onClick={() => setLightboxIdx((lightboxIdx + screenshots.length - 1) % screenshots.length)}>Prev</button>
+                  <button className="lb-btn" onClick={() => setLightboxIdx(null)}>Close</button>
+                  <button className="lb-btn" onClick={() => setLightboxIdx((lightboxIdx + 1) % screenshots.length)}>Next</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
