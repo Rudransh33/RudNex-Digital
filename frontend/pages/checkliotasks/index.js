@@ -9,7 +9,7 @@ export default function ChecklioTasksLanding() {
     { src: '/checkliotasks/03-to-planned.jpg', title: 'Weekly Planning', desc: 'Plan your week with dedicated sections for each day and create task sets.' },
     { src: '/checkliotasks/04-suggestions.jpg', title: 'Smart Suggestions', desc: 'Daily wisdom and personalized ideas like "Lunch & Learn" for productivity.' },
     { src: '/checkliotasks/05-weekend.jpg', title: 'Weekend Planner', desc: 'Organize Saturday and Sunday with separate sections and labels.' },
-    { src: '/checkliotasks/06-settings.jpg', title: 'Customizable Settings', desc: 'Biometric lock, alarm priorities, ringtones, volumes, and themes.' }
+    { src: '/checkliotasks/06-settings.jpeg', title: 'Customizable Settings', desc: 'Biometric lock, alarm priorities, ringtones, volumes, and themes.' }
   ]
   const handleComingSoon = (e) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ export default function ChecklioTasksLanding() {
         header { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: 700; color: white; }
-        .logo::before { content: "✓"; background: linear-gradient(45deg, #ff6b6b, #ffa500); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-size: 1.2rem; color: white; }
+        .logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; margin-right: 10px; box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
         .nav-links { display: flex; list-style: none; gap: 2rem; }
         .nav-links a { color: white; text-decoration: none; transition: opacity 0.3s; }
         .nav-links a:hover { opacity: 0.8; }
@@ -84,7 +84,10 @@ export default function ChecklioTasksLanding() {
 
       <header>
         <nav className="container">
-          <div className="logo">Checklio Tasks</div>
+          <div className="logo">
+            <img className="logo-img" src="/checkliotasks/logo.jpg" alt="Checklio Tasks Logo" />
+            Checklio Tasks
+          </div>
           <ul className="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#screenshots">Screenshots</a></li>
