@@ -91,7 +91,7 @@ export default function ChecklioTasksLanding() {
       <header>
         <nav className="container">
           <div className="logo">
-            <img className="logo-img" src="/checkliotasks/logo.jpg" alt="Checklio Tasks Logo" />
+            <img className="logo-img" src={`/checkliotasks/logo.jpg?${assetVersion}`} alt="Checklio Tasks Logo" />
             Checklio Tasks
           </div>
           <ul className="nav-links">
