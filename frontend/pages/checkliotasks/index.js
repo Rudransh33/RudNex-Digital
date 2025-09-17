@@ -1,6 +1,11 @@
 import Head from 'next/head'
 
 export default function ChecklioTasksLanding() {
+  const handleComingSoon = (e) => {
+    e.preventDefault()
+    alert('Checklio Tasks is coming soon!')
+  }
+
   return (
     <div>
       <Head>
@@ -74,7 +79,7 @@ export default function ChecklioTasksLanding() {
           <h1>Master Your Tasks, Elevate Your Life</h1>
           <p>Checklio Tasks is the intelligent task management app that transforms chaos into clarity. Organize, prioritize, and accomplish your goals with smart suggestions and intuitive planning.</p>
           <div className="cta-buttons">
-            <a href="#download" className="btn btn-primary">Download Now</a>
+            <a href="#" onClick={handleComingSoon} className="btn btn-primary">Download Now</a>
             <a href="#features" className="btn btn-secondary">Explore Features</a>
           </div>
         </div>
@@ -183,8 +188,8 @@ export default function ChecklioTasksLanding() {
           <h2>Ready to Transform Your Productivity?</h2>
           <p style={{ fontSize: '1.2rem', marginBottom: '2rem' }}>Download Checklio Tasks today and experience the perfect blend of simplicity and power in task management.</p>
           <div className="cta-buttons">
-            <a href="#" className="btn btn-primary">Download for Android</a>
-            <a href="#" className="btn btn-secondary">Download for iOS</a>
+            <a href="#" onClick={handleComingSoon} className="btn btn-primary">Download for Android</a>
+            <a href="#" onClick={handleComingSoon} className="btn btn-secondary">Download for iOS</a>
           </div>
           <p style={{ marginTop: '2rem', opacity: 0.8 }}>Available on Google Play Store and Apple App Store</p>
         </div>
