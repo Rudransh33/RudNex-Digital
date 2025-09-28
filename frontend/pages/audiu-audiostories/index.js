@@ -4,7 +4,7 @@ export default function AudiuAudioStories() {
   return (
     <div>
       <Head>
-        <title>Audiu – Audio Stories | Rudnex</title>
+        <title>Audiu - Audiu Stories | Rudnex</title>
         <meta name="description" content="Audiu by Rudnex – a modern audio story streaming app. Explore trending, romance, horror, and NKU universe stories." />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@ export default function AudiuAudioStories() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Audiu – Audio Stories",
+            "name": "Audiu - Audiu Stories",
             "url": "https://rudnex.com/audiu-audiostories",
             "publisher": {"@type": "Organization", "name": "Rudnex"},
             "inLanguage": "en"
@@ -151,7 +151,7 @@ export default function AudiuAudioStories() {
         <div className="container">
           <nav>
             <div className="brand">
-              <span className="dot"></span> Audiu Audio Stories
+              <span className="dot"></span> Audiu - Audiu Stories
             </div>
             <div style={{display: 'flex', gap: '14px'}}>
               <a href="/audiu-privacy">Privacy Policy</a>

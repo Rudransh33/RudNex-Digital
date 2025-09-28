@@ -30,7 +30,7 @@ export default function AppDetail() {
     },
     'audiu-audiostories': {
       id: 'audiu-audiostories',
-      name: 'Audiu Audio Stories',
+      name: 'Audiu - Audiu Stories',
       description: 'Immerse yourself in captivating audio stories and dramas with high-quality narration',
       icon: '🎧',
       category: 'Entertainment',
