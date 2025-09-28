@@ -21,7 +21,7 @@ export default function AudiuPrivacy() {
             "@context": "https://schema.org",
             "@type": "PrivacyPolicy",
             "name": "Audiu Privacy Policy",
-            "publisher": {"@type": "Organization", "name": "Rudnex"},
+            "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-audiostories/privacy",
             "dateModified": "2025-09-28"
@@ -217,7 +217,7 @@ export default function AudiuPrivacy() {
         <section id="contact" className="card">
           <h2>12. Contact Information</h2>
           <p><strong>Email:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a><br/>
-          <strong>Company:</strong> Rudnex<br/>
+          <strong>Operator:</strong> Individual Developer (Rudnex)<br/>
           <strong>App:</strong> Audiu – Audio Story Streaming</p>
         </section>
       </main>
