@@ -26,13 +26,15 @@ export default function AudiuAudioStories() {
 
       <style jsx global>{`
         :root {
-          --bg: #000;
-          --surface: #121212;
-          --card: #181818;
-          --text: #fff;
-          --muted: #cfcfcf;
-          --accent: #FF2D55;
-          --border: #2a2a2a;
+          --bg: #000000;
+          --surface: #1a1a1a;
+          --card: #0d0d0d;
+          --text: #ffffff;
+          --muted: #b8b8b8;
+          --accent: #dc2626;
+          --gold: #fbbf24;
+          --gold-dark: #d97706;
+          --border: #333333;
           --radius: 16px;
         }
         * {
@@ -78,16 +80,21 @@ export default function AudiuAudioStories() {
           width: 10px;
           height: 10px;
           border-radius: 999px;
-          background: var(--accent);
-          box-shadow: 0 0 0 6px rgba(255,45,85,.2);
+          background: var(--gold);
+          box-shadow: 0 0 0 6px rgba(251,191,36,.3);
         }
         h1 {
           font-size: 2.2rem;
           margin: 0 0 6px;
+          background: linear-gradient(45deg, var(--gold), var(--gold-dark));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         h2 {
           font-size: 1.35rem;
           margin: 26px 0 10px;
+          color: var(--accent);
         }
         p {
           line-height: 1.75;
@@ -111,15 +118,27 @@ export default function AudiuAudioStories() {
           border-radius: var(--radius);
           padding: 16px;
           transition: transform .2s ease, box-shadow .2s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .story-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, var(--accent), var(--gold));
         }
         .story-card:hover {
           transform: translateY(-3px);
-          box-shadow: 0 6px 18px rgba(255,45,85,.2);
+          box-shadow: 0 6px 18px rgba(220,38,38,.3), 0 0 20px rgba(251,191,36,.2);
         }
         .story-title {
           font-weight: 700;
           font-size: 1.1rem;
           margin: 0 0 6px;
+          color: var(--gold);
         }
         .story-meta {
           font-size: .9rem;
@@ -137,6 +156,29 @@ export default function AudiuAudioStories() {
           padding: 0;
           overflow: hidden;
           display: block;
+          text-decoration: none;
+        }
+        .category-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          padding: 16px;
+          transition: transform .2s ease, box-shadow .2s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .category-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, var(--gold), var(--accent));
+        }
+        .category-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 18px rgba(220,38,38,.3), 0 0 20px rgba(251,191,36,.2);
         }
         .story-card img {
           width: 100%;
@@ -177,7 +219,14 @@ export default function AudiuAudioStories() {
           <div className="grid">
             <div className="story-card">
               <a href="audiu://story/adheera-the-born-king">
-                <img src={`/audiu-audiostories/Adheera.jpg?${assetVersion}`} alt="Adheera: The Born King" />
+                <img 
+                  src={`/audiu-audiostories/Adheera.jpg?${assetVersion}`} 
+                  alt="Adheera: The Born King"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.display = 'none';
+                  }}
+                />
                 <div>
                   <div className="story-title">Adheera: The Born King</div>
                   <div className="story-meta">Mythological • NKU Universe</div>
@@ -186,7 +235,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/adhuri-kahaani-humari">
-                <img src={`/audiu-audiostories/AKH%20Thumbnail.jpg?${assetVersion}`} alt="Adhuri Kahaani Humaari" />
+                <img src={`/audiu-audiostories/AKH_Thumbnail.jpg?${assetVersion}`} alt="Adhuri Kahaani Humaari" />
                 <div>
                   <div className="story-title">Adhuri Kahaani Humaari</div>
                   <div className="story-meta">Horror • Supernatural</div>
@@ -195,7 +244,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/alvida-ishq">
-                <img src={`/audiu-audiostories/Alvida%20ishq.jpg?${assetVersion}`} alt="Alvida Ishq" />
+                <img src={`/audiu-audiostories/Alvida_ishq.jpg?${assetVersion}`} alt="Alvida Ishq" />
                 <div>
                   <div className="story-title">Alvida Ishq</div>
                   <div className="story-meta">Romance • Drama</div>
@@ -213,7 +262,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/hum-11-anuvardhara">
-                <img src={`/audiu-audiostories/Hum%2011%20Anuvardhara.jpg?${assetVersion}`} alt="Hum 11: The Mystery of Anuvardhara" />
+                <img src={`/audiu-audiostories/Hum_11_Anuvardhara.jpg?${assetVersion}`} alt="Hum 11: The Mystery of Anuvardhara" />
                 <div>
                   <div className="story-title">Hum 11: The Mystery of Anuvardhara</div>
                   <div className="story-meta">Sci‑Fi • Adventure</div>
@@ -235,23 +284,23 @@ export default function AudiuAudioStories() {
         <section id="categories" className="card">
           <h2>Popular Categories</h2>
           <div className="grid">
-            <div className="story-card">
+            <div className="category-card">
               <div className="story-title">🔥 Trending Now</div>
               <div className="story-meta">The most popular stories this week</div>
             </div>
-            <div className="story-card">
+            <div className="category-card">
               <div className="story-title">💖 Romance</div>
               <div className="story-meta">Love stories & heartfelt audio dramas</div>
             </div>
-            <div className="story-card">
+            <div className="category-card">
               <div className="story-title">👻 Horror</div>
               <div className="story-meta">Spine‑chilling tales & dark thrillers</div>
             </div>
-            <div className="story-card">
+            <div className="category-card">
               <div className="story-title">🌌 NKU Universe</div>
               <div className="story-meta">Epic sagas from the Navedh Kingdom Universe</div>
             </div>
-            <div className="story-card">
+            <div className="category-card">
               <div className="story-title">⭐ New Releases</div>
               <div className="story-meta">Freshly uploaded stories from creators</div>
             </div>
