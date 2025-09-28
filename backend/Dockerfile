@@ -5,6 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PIP_ROOT_USER_ACTION=ignore
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
 # Install system dependencies
 RUN set -eux; \
@@ -19,7 +20,7 @@ RUN set -eux; \
         libglib2.0-0 \
         libgl1 \
         libgomp1 \
-    ; \
+    2>/dev/null; \
     rm -rf /var/lib/apt/lists/*
 
 # Set work directory
