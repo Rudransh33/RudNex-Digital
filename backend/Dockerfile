@@ -28,11 +28,11 @@ WORKDIR /app
 
 # Copy build context and install Python dependencies (supports root or backend context)
 COPY . .
-RUN pip install --no-cache-dir --upgrade pip --root-user-action=ignore && \
+RUN PIP_ROOT_USER_ACTION=ignore pip install --no-cache-dir --upgrade pip && \
     if [ -f backend/requirements.txt ]; then \
-        pip install --no-cache-dir -r backend/requirements.txt --root-user-action=ignore; \
+        PIP_ROOT_USER_ACTION=ignore pip install --no-cache-dir -r backend/requirements.txt; \
     elif [ -f requirements.txt ]; then \
-        pip install --no-cache-dir -r requirements.txt --root-user-action=ignore; \
+        PIP_ROOT_USER_ACTION=ignore pip install --no-cache-dir -r requirements.txt; \
     else \
         echo "requirements.txt not found" && exit 1; \
     fi
