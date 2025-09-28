@@ -1,34 +1,27 @@
 {
   "version": 2,
-  "name": "rudnex-digital-hub",
-  "builds": [
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rewrites": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
+      "source": "/api/(.*)",
+      "destination": "https://api.rudnex.com/api/$1"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "https://api.rudnex.com/admin/$1"
+    },
+    {
+      "source": "/content/(.*)",
+      "destination": "https://api.rudnex.com/content/$1"
+    },
+    {
+      "source": "/uploads/(.*)",
+      "destination": "https://api.rudnex.com/uploads/$1"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "https://api.rudnex.com/api/$1"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "https://api.rudnex.com/admin/$1"
-    },
-    {
-      "src": "/content/(.*)",
-      "dest": "https://api.rudnex.com/content/$1"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "https://api.rudnex.com/uploads/$1"
-    }
-  ],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "https://api.rudnex.com",
-    "NEXT_PUBLIC_APP_NAME": "Rudnex Digital Hub"
-  },
   "headers": [
     {
       "source": "/(.*)",
