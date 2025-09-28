@@ -221,6 +221,12 @@ export default function AudiuPrivacy() {
           <strong>Operator:</strong> Individual Developer (Rudnex)<br/>
           <strong>App:</strong> Audiu – Audio Story Streaming</p>
         </section>
+
+        <section id="about" className="card">
+          <h2>13. About the Developer</h2>
+          <p>This app is developed and maintained by an <strong>individual developer</strong> under the name <strong>Rudnex</strong>. While not a registered company, Rudnex operates this project and its website to provide audio story streaming services with care for user privacy and transparency.</p>
+          <p>Website: <a href="https://rudnex.com" target="_blank" rel="noopener noreferrer">https://rudnex.com</a></p>
+        </section>
       </main>
 
       <footer>
