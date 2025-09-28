@@ -236,7 +236,15 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/adhuri-kahaani-humari">
-                <img src="/audiu-audiostories/AKH_Thumbnail.jpg" alt="Adhuri Kahaani Humaari" />
+                <img 
+                  src="/audiu-audiostories/AKH_Thumbnail.jpg" 
+                  alt="Adhuri Kahaani Humaari"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.minHeight = '340px';
+                  }}
+                />
                 <div>
                   <div className="story-title">Adhuri Kahaani Humaari</div>
                   <div className="story-meta">Horror • Supernatural</div>
@@ -245,7 +253,15 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/alvida-ishq">
-                <img src="/audiu-audiostories/Alvida_ishq.jpg" alt="Alvida Ishq" />
+                <img 
+                  src="/audiu-audiostories/Alvida_ishq.jpg" 
+                  alt="Alvida Ishq"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.minHeight = '340px';
+                  }}
+                />
                 <div>
                   <div className="story-title">Alvida Ishq</div>
                   <div className="story-meta">Romance • Drama</div>
@@ -254,7 +270,15 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/chandangarh-ki-daayan">
-                <img src="/audiu-audiostories/CKD.jpg" alt="Chandangarh Ki Daayan" />
+                <img 
+                  src="/audiu-audiostories/CKD.jpg" 
+                  alt="Chandangarh Ki Daayan"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.minHeight = '340px';
+                  }}
+                />
                 <div>
                   <div className="story-title">Chandangarh Ki Daayan</div>
                   <div className="story-meta">Horror • Mystery</div>
@@ -263,7 +287,15 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/hum-11-anuvardhara">
-                <img src="/audiu-audiostories/Hum_11_Anuvardhara.jpg" alt="Hum 11: The Mystery of Anuvardhara" />
+                <img 
+                  src="/audiu-audiostories/Hum_11_Anuvardhara.jpg" 
+                  alt="Hum 11: The Mystery of Anuvardhara"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.minHeight = '340px';
+                  }}
+                />
                 <div>
                   <div className="story-title">Hum 11: The Mystery of Anuvardhara</div>
                   <div className="story-meta">Sci‑Fi • Adventure</div>
@@ -272,7 +304,15 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/miley-na-miley-hum">
-                <img src="/audiu-audiostories/MNMH.jpg" alt="Miley Na Miley Hum" />
+                <img 
+                  src="/audiu-audiostories/MNMH.jpg" 
+                  alt="Miley Na Miley Hum"
+                  onError={(e) => {
+                    console.log('Image failed to load:', e.target.src);
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.minHeight = '340px';
+                  }}
+                />
                 <div>
                   <div className="story-title">Miley Na Miley Hum</div>
                   <div className="story-meta">Romance • Reborn Love Story</div>
