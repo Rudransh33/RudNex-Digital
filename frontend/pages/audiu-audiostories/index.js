@@ -1,6 +1,8 @@
 import Head from 'next/head'
 
 export default function AudiuAudioStories() {
+  const assetVersion = process.env.NEXT_PUBLIC_ASSET_VERSION || 'v=1'
+  
   return (
     <div>
       <Head>
@@ -154,7 +156,7 @@ export default function AudiuAudioStories() {
               <span className="dot"></span> Audiu - Audiu Stories
             </div>
             <div style={{display: 'flex', gap: '14px'}}>
-              <a href="/audiu-privacy">Privacy Policy</a>
+              <a href="/audiu-audiostories/privacy">Privacy Policy</a>
               <a href="#categories">Categories</a>
               <a href="#contact">Contact</a>
             </div>
@@ -175,7 +177,7 @@ export default function AudiuAudioStories() {
           <div className="grid">
             <div className="story-card">
               <a href="audiu://story/adheera-the-born-king">
-                <img src="/audiu-audiostories/Adheera.jpg" alt="Adheera: The Born King" />
+                <img src={`/audiu-audiostories/Adheera.jpg?${assetVersion}`} alt="Adheera: The Born King" />
                 <div>
                   <div className="story-title">Adheera: The Born King</div>
                   <div className="story-meta">Mythological • NKU Universe</div>
@@ -184,7 +186,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/adhuri-kahaani-humari">
-                <img src="/audiu-audiostories/AKH%20Thumbnail.jpg" alt="Adhuri Kahaani Humaari" />
+                <img src={`/audiu-audiostories/AKH%20Thumbnail.jpg?${assetVersion}`} alt="Adhuri Kahaani Humaari" />
                 <div>
                   <div className="story-title">Adhuri Kahaani Humaari</div>
                   <div className="story-meta">Horror • Supernatural</div>
@@ -193,7 +195,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/alvida-ishq">
-                <img src="/audiu-audiostories/Alvida%20ishq.jpg" alt="Alvida Ishq" />
+                <img src={`/audiu-audiostories/Alvida%20ishq.jpg?${assetVersion}`} alt="Alvida Ishq" />
                 <div>
                   <div className="story-title">Alvida Ishq</div>
                   <div className="story-meta">Romance • Drama</div>
@@ -202,7 +204,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/chandangarh-ki-daayan">
-                <img src="/audiu-audiostories/CKD.jpg" alt="Chandangarh Ki Daayan" />
+                <img src={`/audiu-audiostories/CKD.jpg?${assetVersion}`} alt="Chandangarh Ki Daayan" />
                 <div>
                   <div className="story-title">Chandangarh Ki Daayan</div>
                   <div className="story-meta">Horror • Mystery</div>
@@ -211,7 +213,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/hum-11-anuvardhara">
-                <img src="/audiu-audiostories/Hum%2011%20Anuvardhara.jpg" alt="Hum 11: The Mystery of Anuvardhara" />
+                <img src={`/audiu-audiostories/Hum%2011%20Anuvardhara.jpg?${assetVersion}`} alt="Hum 11: The Mystery of Anuvardhara" />
                 <div>
                   <div className="story-title">Hum 11: The Mystery of Anuvardhara</div>
                   <div className="story-meta">Sci‑Fi • Adventure</div>
@@ -220,7 +222,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/miley-na-miley-hum">
-                <img src="/audiu-audiostories/MNMH.jpg" alt="Miley Na Miley Hum" />
+                <img src={`/audiu-audiostories/MNMH.jpg?${assetVersion}`} alt="Miley Na Miley Hum" />
                 <div>
                   <div className="story-title">Miley Na Miley Hum</div>
                   <div className="story-meta">Romance • Reborn Love Story</div>
