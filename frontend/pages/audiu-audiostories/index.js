@@ -220,11 +220,12 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/adheera-the-born-king">
                 <img 
-                  src={`/audiu-audiostories/Adheera.jpg?${assetVersion}`} 
+                  src="/audiu-audiostories/Adheera.jpg" 
                   alt="Adheera: The Born King"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
-                    e.target.style.display = 'none';
+                    e.target.style.backgroundColor = '#333';
+                    e.target.style.minHeight = '340px';
                   }}
                 />
                 <div>
@@ -235,7 +236,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/adhuri-kahaani-humari">
-                <img src={`/audiu-audiostories/AKH_Thumbnail.jpg?${assetVersion}`} alt="Adhuri Kahaani Humaari" />
+                <img src="/audiu-audiostories/AKH_Thumbnail.jpg" alt="Adhuri Kahaani Humaari" />
                 <div>
                   <div className="story-title">Adhuri Kahaani Humaari</div>
                   <div className="story-meta">Horror • Supernatural</div>
@@ -244,7 +245,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/alvida-ishq">
-                <img src={`/audiu-audiostories/Alvida_ishq.jpg?${assetVersion}`} alt="Alvida Ishq" />
+                <img src="/audiu-audiostories/Alvida_ishq.jpg" alt="Alvida Ishq" />
                 <div>
                   <div className="story-title">Alvida Ishq</div>
                   <div className="story-meta">Romance • Drama</div>
@@ -253,7 +254,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/chandangarh-ki-daayan">
-                <img src={`/audiu-audiostories/CKD.jpg?${assetVersion}`} alt="Chandangarh Ki Daayan" />
+                <img src="/audiu-audiostories/CKD.jpg" alt="Chandangarh Ki Daayan" />
                 <div>
                   <div className="story-title">Chandangarh Ki Daayan</div>
                   <div className="story-meta">Horror • Mystery</div>
@@ -262,7 +263,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/hum-11-anuvardhara">
-                <img src={`/audiu-audiostories/Hum_11_Anuvardhara.jpg?${assetVersion}`} alt="Hum 11: The Mystery of Anuvardhara" />
+                <img src="/audiu-audiostories/Hum_11_Anuvardhara.jpg" alt="Hum 11: The Mystery of Anuvardhara" />
                 <div>
                   <div className="story-title">Hum 11: The Mystery of Anuvardhara</div>
                   <div className="story-meta">Sci‑Fi • Adventure</div>
@@ -271,7 +272,7 @@ export default function AudiuAudioStories() {
             </div>
             <div className="story-card">
               <a href="audiu://story/miley-na-miley-hum">
-                <img src={`/audiu-audiostories/MNMH.jpg?${assetVersion}`} alt="Miley Na Miley Hum" />
+                <img src="/audiu-audiostories/MNMH.jpg" alt="Miley Na Miley Hum" />
                 <div>
                   <div className="story-title">Miley Na Miley Hum</div>
                   <div className="story-meta">Romance • Reborn Love Story</div>
