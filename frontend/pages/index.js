@@ -178,7 +178,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <Link href="/apps/audio-story" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                  <Link href="/audiu-audiostories" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                     View App Details
                   </Link>
                 </div>

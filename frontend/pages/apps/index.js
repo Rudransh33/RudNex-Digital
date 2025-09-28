@@ -17,8 +17,8 @@ export default function Apps() {
       releaseDate: 'Q2 2024'
     },
     {
-      id: 'audio-story',
-      name: 'Audio Story App',
+      id: 'audiu-audiostories',
+      name: 'Audiu Audio Stories',
       description: 'Immerse yourself in captivating audio stories and dramas with high-quality narration',
       icon: '🎧',
       category: 'Entertainment',

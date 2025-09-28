@@ -28,15 +28,15 @@ export default function AppDetail() {
       demoUrl: '#',
       releaseDate: 'Q2 2024'
     },
-    'audio-story': {
-      id: 'audio-story',
-      name: 'Audio Story App',
+    'audiu-audiostories': {
+      id: 'audiu-audiostories',
+      name: 'Audiu Audio Stories',
       description: 'Immerse yourself in captivating audio stories and dramas with high-quality narration',
       icon: '🎧',
       category: 'Entertainment',
       status: 'Coming Soon',
       features: ['High-quality Audio', 'Diverse Stories', 'Offline Listening', 'Background Play', 'Bookmarks'],
-      longDescription: 'Escape into a world of captivating stories with our Audio Story app. Featuring professionally narrated content across various genres, from thrilling mysteries to heartwarming tales. Listen anywhere, anytime with offline support and background playback.',
+      longDescription: 'Escape into a world of captivating stories with Audiu. Featuring professionally narrated content across various genres, from thrilling mysteries to heartwarming tales. Listen anywhere, anytime with offline support and background playback.',
       screenshots: [
         { title: 'Story Library', description: 'Browse through our extensive collection of stories' },
         { title: 'Player Interface', description: 'Beautiful audio player with controls and bookmarks' },
@@ -49,11 +49,18 @@ export default function AppDetail() {
   }
 
   useEffect(() => {
-    if (id && apps[id]) {
-      setApp(apps[id])
+    if (id) {
+      // Redirect old audio-story route to new Audiu page
+      if (id === 'audio-story') {
+        router.push('/audiu-audiostories')
+        return
+      }
+      if (apps[id]) {
+        setApp(apps[id])
+      }
     }
     setLoading(false)
-  }, [id])
+  }, [id, router])
 
   if (loading) {
     return (
