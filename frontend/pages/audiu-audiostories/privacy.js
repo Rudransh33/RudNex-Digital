@@ -62,6 +62,7 @@ export default function AudiuPrivacy() {
               <a className="pill" href="#permissions">Permissions</a>
               <a className="pill" href="#rights">Your Rights</a>
               <a className="pill" href="#contact">Contact</a>
+              <a className="pill" href="/audiu-terms">Terms of Service</a>
             </div>
           </nav>
         </div>
