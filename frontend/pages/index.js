@@ -151,7 +151,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Audio Story App */}
+              {/* Audiu - Audio Stories */}
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-purple-400/50 transition-all">
                 <div className="text-purple-400 text-6xl mb-6 text-center">🎧</div>
                 <h3 className="text-2xl font-semibold text-white mb-4 text-center">Audiu - Audio Stories</h3>
