@@ -288,15 +288,27 @@ export default function AudiuPrivacy() {
           </ul>
         </section>
 
+        <section id="account-deletion" className="card">
+          <h2>13. Account Deletion</h2>
+          <p>You can request deletion of your account and all associated personal data at any time.</p>
+          <ul>
+            <li><strong>In‑App:</strong> Go to Profile → Settings → Request Account Deletion (if available in your version). We will process the request within 30 days.</li>
+            <li><strong>Email:</strong> If you cannot access the app, email <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> from the email address associated with your account and include the subject "Audiu Account Deletion".</li>
+            <li><strong>What is deleted:</strong> Account details (name, surname, email, age, country), watch history, favorites, playlists, and session data stored on our servers.</li>
+            <li><strong>Local data:</strong> Offline downloads stored on your device are not automatically removed. You can delete them from the app or by removing the files from your device storage.</li>
+          </ul>
+          <p>After deletion is completed, remaining backups (if any) are purged during regular backup rotation cycles.</p>
+        </section>
+
         <section id="contact" className="card">
-          <h2>13. Contact Information</h2>
+          <h2>14. Contact Information</h2>
           <p><strong>Email:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a><br/>
           <strong>Operator:</strong> Individual Developer (Rudnex)<br/>
           <strong>App:</strong> Audiu – Audio Story Streaming</p>
         </section>
 
         <section id="about" className="card">
-          <h2>14. About the Developer</h2>
+          <h2>15. About the Developer</h2>
           <p>This app is developed and maintained by an <strong>individual developer</strong> under the name <strong>Rudnex</strong>. While not a registered company, Rudnex operates this project and its website to provide audio story streaming services with care for user privacy and transparency.</p>
           <p>Website: <a href="https://rudnex.com" target="_blank" rel="noopener noreferrer">https://rudnex.com</a></p>
           <p>This application was built using AI-assisted development tools, including AI Cursor Agent, to accelerate and enhance the development process.</p>
