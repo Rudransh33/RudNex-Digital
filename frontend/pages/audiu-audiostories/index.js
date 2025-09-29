@@ -224,7 +224,7 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/adheera-the-born-king">
                 <img 
-                  src="/audiu-audiostories/Adheera.jpg" 
+                  src={`/audiu-audiostories/Adheera.jpg?${assetVersion}`}
                   alt="Adheera: The Born King"
                   className="portrait-933x1400"
                   onError={(e) => {
@@ -242,7 +242,7 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/adhuri-kahaani-humari">
                 <img 
-                  src="/audiu-audiostories/AKH_Thumbnail.jpg" 
+                  src={`/audiu-audiostories/AKH_Thumbnail.jpg?${assetVersion}`} 
                   alt="Adhuri Kahaani Humaari"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
@@ -259,7 +259,7 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/alvida-ishq">
                 <img 
-                  src="/audiu-audiostories/Alvida_ishq.jpg" 
+                  src={`/audiu-audiostories/Alvida_ishq.jpg?${assetVersion}`} 
                   alt="Alvida Ishq"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
@@ -276,7 +276,7 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/chandangarh-ki-daayan">
                 <img 
-                  src="/audiu-audiostories/CKD.jpg" 
+                  src={`/audiu-audiostories/CKD.jpg?${assetVersion}`} 
                   alt="Chandangarh Ki Daayan"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
@@ -293,7 +293,7 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/hum-11-anuvardhara">
                 <img 
-                  src="/audiu-audiostories/Hum_11_Anuvardhara.jpg" 
+                  src={`/audiu-audiostories/Hum_11_Anuvardhara.jpg?${assetVersion}`} 
                   alt="Hum 11: The Mystery of Anuvardhara"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
@@ -310,7 +310,7 @@ export default function AudiuAudioStories() {
             <div className="story-card">
               <a href="audiu://story/miley-na-miley-hum">
                 <img 
-                  src="/audiu-audiostories/MNMH.jpg" 
+                  src={`/audiu-audiostories/MNMH.jpg?${assetVersion}`} 
                   alt="Miley Na Miley Hum"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
