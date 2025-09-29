@@ -226,11 +226,12 @@ export default function AudiuPrivacy() {
           <h2>13. About the Developer</h2>
           <p>This app is developed and maintained by an <strong>individual developer</strong> under the name <strong>Rudnex</strong>. While not a registered company, Rudnex operates this project and its website to provide audio story streaming services with care for user privacy and transparency.</p>
           <p>Website: <a href="https://rudnex.com" target="_blank" rel="noopener noreferrer">https://rudnex.com</a></p>
+          <p>This application was built using AI-assisted development tools, including AI Cursor Agent, to accelerate and enhance the development process.</p>
         </section>
       </main>
 
       <footer>
-        <div>© {new Date().getFullYear()} Rudnex. All rights reserved.</div>
+        <div>© {new Date().getFullYear()} Individual Developer Rudnex. All rights reserved.</div>
       </footer>
     </div>
   )
