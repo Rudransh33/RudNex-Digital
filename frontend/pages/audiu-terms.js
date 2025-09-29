@@ -24,7 +24,7 @@ export default function AudiuTerms() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-terms",
-            "dateModified": "2025-09-28"
+            "dateModified": "2025-09-29"
           })
         }} />
       </Head>
@@ -66,11 +66,12 @@ export default function AudiuTerms() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu – Terms of Service</h1>
-          <p className="muted"><strong>Last updated:</strong> September 28, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> September 29, 2025</p>
           <div className="toc">
             <a className="pill" href="#acceptance">Acceptance of Terms</a>
             <a className="pill" href="#use">Use of the Service</a>
             <a className="pill" href="#accounts">Accounts & Registration</a>
+            <a className="pill" href="#age">Age Requirements</a>
             <a className="pill" href="#content">Content & Intellectual Property</a>
             <a className="pill" href="#restrictions">User Responsibilities & Restrictions</a>
             <a className="pill" href="#termination">Termination</a>
@@ -92,24 +93,45 @@ export default function AudiuTerms() {
 
         <section id="accounts" className="card">
           <h2>3. Accounts & Registration</h2>
-          <p>To access certain features, you must create an account. You are responsible for maintaining the confidentiality of your login credentials and for all activities under your account.</p>
+          <p>To access certain features, you must create an account with the following requirements:</p>
+          <ul>
+            <li><strong>Account Creation:</strong> You may register using email/password or Google Sign-In</li>
+            <li><strong>Required Information:</strong> Name, surname, email, age, and country are mandatory</li>
+            <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials</li>
+            <li><strong>Account Activity:</strong> You are responsible for all activities under your account</li>
+            <li><strong>Accurate Information:</strong> You must provide truthful and complete information during registration</li>
+          </ul>
+        </section>
+
+        <section id="age" className="card">
+          <h2>4. Age Requirements & Verification</h2>
+          <p>Audiu enforces strict age verification to comply with children's privacy laws:</p>
+          <ul>
+            <li><strong>Minimum Age:</strong> You must be at least 13 years old to use Audiu</li>
+            <li><strong>Mandatory Verification:</strong> All users must verify their age during account creation</li>
+            <li><strong>Enhanced Protection:</strong> Google Sign-In users must complete age verification before app access</li>
+            <li><strong>No Bypass:</strong> Age verification cannot be skipped; attempting to navigate away will log you out</li>
+            <li><strong>Account Termination:</strong> Accounts of users under 13 will be immediately terminated and data deleted</li>
+            <li><strong>Parental Notice:</strong> Parents who discover their child under 13 has created an account should contact us immediately</li>
+          </ul>
         </section>
 
         <section id="content" className="card">
-          <h2>4. Content & Intellectual Property</h2>
+          <h2>5. Content & Intellectual Property</h2>
           <ul>
             <li>All audio stories, text, images, and other media available on Audiu are protected by copyright and intellectual property laws.</li>
             <li>You may not copy, distribute, modify, or create derivative works without authorization.</li>
-            <li>User-submitted content (e.g., reactions, comments) remains your property, but you grant Rudnex a license to display and use it within the Service.</li>
+            <li>The Service does not currently support user-submitted content such as reactions or comments.</li>
           </ul>
         </section>
 
         <section id="restrictions" className="card">
-          <h2>5. User Responsibilities & Restrictions</h2>
+          <h2>6. User Responsibilities & Restrictions</h2>
           <ul>
             <li>Do not attempt to reverse-engineer, hack, or disrupt the Service.</li>
-            <li>Do not upload illegal, harmful, or infringing content.</li>
-            <li>Respect other users and do not engage in harassment or abuse.</li>
+            <li>Do not attempt to circumvent age verification or other security measures.</li>
+            <li>Do not use automated systems or bots to access the Service.</li>
+            <li>Do not share your account credentials with others.</li>
           </ul>
         </section>
 

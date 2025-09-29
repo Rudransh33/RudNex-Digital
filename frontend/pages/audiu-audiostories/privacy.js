@@ -24,7 +24,7 @@ export default function AudiuPrivacy() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-audiostories/privacy",
-            "dateModified": "2025-09-28"
+            "dateModified": "2025-09-29"
           })
         }} />
       </Head>
@@ -71,7 +71,7 @@ export default function AudiuPrivacy() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu Privacy Policy</h1>
-          <p className="muted"><strong>Last updated:</strong> September 28, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> September 29, 2025</p>
           <div className="toc">
             <a className="pill" href="#scope">Scope & Controller</a>
             <a className="pill" href="#collect">Information We Collect</a>
@@ -99,13 +99,23 @@ export default function AudiuPrivacy() {
           <h2>2. Information We Collect</h2>
           <h3>Mobile App Data</h3>
           <ul>
-            <li><strong>Account Information:</strong> Email & credentials for account sign‑in (email/password or Google Sign‑In)</li>
-            <li><strong>Profile Information:</strong> Name, email, optional avatar/profile image</li>
-            <li><strong>Authentication Data:</strong> Session tokens for secure login</li>
-            <li><strong>Usage Data:</strong> Listening history, playlists, favorites, and watch history</li>
+            <li><strong>Account Information:</strong> Email, password (hashed), name, surname, age, country, username</li>
+            <li><strong>Profile Information:</strong> Name, email, age, country, optional profile image URL (Google Sign-In)</li>
+            <li><strong>Authentication Data:</strong> Session tokens, provider information (Google Sign-In), accepted terms</li>
+            <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, playlists</li>
+            <li><strong>Playback Preferences:</strong> Volume settings, background play preferences, last played story, current queue (stored locally on device)</li>
             <li><strong>Offline Content:</strong> Optional offline downloads stored locally on your device</li>
-            <li><strong>Technical Data:</strong> Crash/error logs (if reporting enabled in future updates)</li>
             <li><strong>Device Information:</strong> Basic device type and operating system for compatibility</li>
+          </ul>
+          <p><strong>Note:</strong> We do not collect crash/error logs, location data, contact information, or advanced device fingerprinting.</p>
+          <h3>Data We Do NOT Collect</h3>
+          <ul>
+            <li><strong>Crash/Error Logs:</strong> No crash reporting or error logging implemented</li>
+            <li><strong>Location Data:</strong> No location permissions requested or location data collected</li>
+            <li><strong>Contact Information:</strong> No access to device contacts or phone numbers</li>
+            <li><strong>Advanced Device Data:</strong> No device fingerprinting or detailed hardware information</li>
+            <li><strong>Camera/Microphone:</strong> No camera or microphone access</li>
+            <li><strong>Third-Party Analytics:</strong> No advertising or analytics tracking</li>
           </ul>
         </section>
 
@@ -126,11 +136,13 @@ export default function AudiuPrivacy() {
           <p>Our app requests only essential permissions:</p>
           <ul>
             <li><strong>Internet/Network Access</strong> – Required for streaming audio and API access</li>
-            <li><strong>Storage Permissions</strong> – For offline downloads (scoped storage on Android 13+)</li>
-            <li><strong>Bluetooth</strong> – For seamless audio device connection and control</li>
-            <li><strong>Notifications</strong> – For playback controls and download alerts</li>
-            <li><strong>Background Services</strong> – For continuous audio playback while screen is off</li>
-            <li><strong>Audio Focus</strong> – For smooth playback; ducks/pauses other audio (no special runtime permission)</li>
+            <li><strong>Storage Permissions</strong> – For offline downloads (scoped storage on Android 13+, legacy storage on older versions)</li>
+            <li><strong>Bluetooth</strong> – For seamless audio device connection and control (including BLUETOOTH_CONNECT and BLUETOOTH_SCAN)</li>
+            <li><strong>Notifications</strong> – For playback controls and download alerts (POST_NOTIFICATIONS on Android 13+)</li>
+            <li><strong>Background Services</strong> – For continuous audio playback while screen is off (FOREGROUND_SERVICE_MEDIA_PLAYBACK)</li>
+            <li><strong>Audio Settings</strong> – For volume control and audio focus management (MODIFY_AUDIO_SETTINGS)</li>
+            <li><strong>Wake Lock</strong> – To prevent device sleep during audio playback</li>
+            <li><strong>Vibration</strong> – For notification alerts</li>
           </ul>
           <p><strong>We do NOT request:</strong></p>
           <ul>
@@ -149,6 +161,16 @@ export default function AudiuPrivacy() {
             <li><strong>PocketBase</strong>: Used for secure authentication and content storage</li>
             <li><strong>Google Sign‑In</strong>: Optional social login service</li>
             <li><strong>Google Fonts</strong>: For typography (no personal data collected)</li>
+            <li><strong>Hetzner Cloud</strong>: Data hosting and storage infrastructure</li>
+          </ul>
+          <h3>Data Storage & Processing</h3>
+          <ul>
+            <li><strong>PocketBase Database:</strong> User accounts, preferences, and usage data stored securely</li>
+            <li><strong>Database Collections:</strong> Users, watch_history, favorites, playlists, audio_reactions, stories content</li>
+            <li><strong>Hetzner Infrastructure:</strong> Data processed and stored on Hetzner Cloud servers</li>
+            <li><strong>Data Location:</strong> User data is stored in secure cloud infrastructure with appropriate safeguards</li>
+            <li><strong>Data Encryption:</strong> All data transmission uses HTTPS encryption</li>
+            <li><strong>Password Security:</strong> Passwords hashed using bcrypt before storage</li>
           </ul>
           <h3>Data Sharing Policy</h3>
           <ul>
@@ -162,42 +184,53 @@ export default function AudiuPrivacy() {
           <h2>6. Data Security</h2>
           <ul>
             <li><strong>HTTPS‑only transport</strong> for all network communications</li>
-            <li><strong>Secure token and session management</strong></li>
+            <li><strong>Secure token and session management</strong> via PocketBase authentication</li>
             <li><strong>Minimal app permissions</strong> following principle of least privilege</li>
-            <li><strong>Production‑grade error handling</strong> without exposing sensitive data</li>
+            <li><strong>Password hashing</strong> using bcrypt for secure credential storage</li>
             <li><strong>Encrypted local storage</strong> for sensitive information</li>
-            <li><strong>Regular security updates</strong> and monitoring</li>
+            <li><strong>Secure cloud infrastructure</strong> via Hetzner with appropriate safeguards</li>
+            <li><strong>No crash reporting</strong> - no error logs or crash data collected</li>
           </ul>
         </section>
 
         <section id="retention" className="card">
           <h2>7. Data Retention</h2>
           <ul>
-            <li><strong>Account Data:</strong> Retained while your account is active</li>
-            <li><strong>Usage Data:</strong> Stored to improve your experience and app functionality</li>
+            <li><strong>Account Data:</strong> Email, name, surname, age, country, username retained while your account is active</li>
+            <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, playlists stored in PocketBase database</li>
+            <li><strong>Playback Preferences:</strong> Volume settings, background play preferences, last played story, current queue stored locally on device only</li>
             <li><strong>Offline Downloads:</strong> Remain on your device until you delete them</li>
             <li><strong>Session Data:</strong> Automatically cleared when you log out</li>
-            <li><strong>Deleted Accounts:</strong> Data removed within 30 days of account deletion</li>
+            <li><strong>Deleted Accounts:</strong> All user data, usage data, and preferences removed within 30 days of account deletion</li>
+            <li><strong>No Crash Data:</strong> No error logs or crash reports are collected or stored</li>
           </ul>
-          <p>You can request immediate deletion of your data by contacting us.</p>
+          <p>You can request immediate deletion of your data by contacting us at <a href="mailto:contact@rudnex.com">contact@rudnex.com</a>.</p>
         </section>
 
         <section id="rights" className="card">
           <h2>8. Your Rights</h2>
           <ul>
-            <li><strong>Access</strong> your personal data</li>
-            <li><strong>Correct</strong> inaccurate information</li>
-            <li><strong>Delete</strong> your account and data</li>
-            <li><strong>Export</strong> your data (playlists, favorites, etc.)</li>
+            <li><strong>Access</strong> your personal data (profile information, usage data, preferences)</li>
+            <li><strong>Correct</strong> inaccurate information (name, email, age, country)</li>
+            <li><strong>Delete</strong> your account and all associated data (watch history, favorites, playlists)</li>
+            <li><strong>Export</strong> your data (playlists, favorites, watch history, playback preferences)</li>
+            <li><strong>Manage</strong> your audio reactions and voice recordings</li>
             <li><strong>Revoke</strong> Google Sign‑In access via your Google account settings</li>
-            <li><strong>Opt‑out</strong> of optional features like crash reporting</li>
+            <li><strong>Control</strong> your playback preferences and volume settings</li>
           </ul>
           <p><strong>Contact us at:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> for any data‑related requests.</p>
         </section>
 
         <section id="children" className="card">
           <h2>9. Children's Privacy</h2>
-          <p>Audiu is intended for users aged 13 and above. We do not knowingly collect personal information from children under 13. If we become aware that we have collected data from a child under 13, we will delete it immediately.</p>
+          <p>Audiu is intended for users aged 13 and above. We enforce strict age verification during account creation:</p>
+          <ul>
+            <li><strong>Mandatory Age Verification:</strong> All users must provide and verify their age during registration</li>
+            <li><strong>Enhanced Google Sign-In Protection:</strong> Users who sign in with Google must complete age verification before accessing the app</li>
+            <li><strong>No Bypass Protection:</strong> Users cannot skip age verification; attempting to navigate away will log them out</li>
+            <li><strong>Immediate Data Deletion:</strong> If we discover a user under 13, we delete their account and data immediately</li>
+          </ul>
+          <p>We do not knowingly collect personal information from children under 13. Parents who believe their child has provided information to us should contact us immediately.</p>
         </section>
 
         <section id="intl" className="card">
