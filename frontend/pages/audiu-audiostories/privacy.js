@@ -263,9 +263,9 @@ export default function AudiuPrivacy() {
         </section>
       </main>
 
-      <footer>
+        <footer>
         <div>© {new Date().getFullYear()} Individual Developer Rudnex. All rights reserved.</div>
-      </footer>
+        </footer>
     </div>
   )
 }
