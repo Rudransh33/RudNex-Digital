@@ -76,6 +76,7 @@ export default function AudiuPrivacy() {
             <a className="pill" href="#scope">Scope & Controller</a>
             <a className="pill" href="#collect">Information We Collect</a>
             <a className="pill" href="#use">How We Use Information</a>
+            <a className="pill" href="#sync">Syncing & Processing Roles</a>
             <a className="pill" href="#permissions">App Permissions (Android)</a>
             <a className="pill" href="#sharing">Sharing & Third Parties</a>
             <a className="pill" href="#security">Data Security</a>
@@ -122,17 +123,35 @@ export default function AudiuPrivacy() {
         <section id="use" className="card">
           <h2>3. How We Use Information</h2>
           <ul>
-            <li>Authenticate and manage user accounts</li>
-            <li>Stream audio content and enable offline listening</li>
-            <li>Sync playlists and favorites across devices</li>
-            <li>Provide customer support and respond to inquiries</li>
-            <li>Improve app features and user experience</li>
-            <li>Ensure app security and prevent abuse</li>
+            <li><strong>Account Management:</strong> Authenticate users, store profile information, manage country-specific age verification (13-16+ based on regional requirements)</li>
+            <li><strong>Content Delivery:</strong> Stream audio stories, enable offline downloads, sync content across devices</li>
+            <li><strong>Personalization:</strong> Track watch history, manage favorites and playlists, remember playback positions</li>
+            <li><strong>User Preferences:</strong> Store volume settings, background play preferences, audio device settings</li>
+            <li><strong>Content Management:</strong> Manage offline downloads and local content storage</li>
+            <li><strong>App Functionality:</strong> Maintain session state, sync user data, provide seamless experience</li>
+            <li><strong>Security:</strong> Prevent abuse, ensure age compliance, maintain secure authentication</li>
+          </ul>
+        </section>
+
+        <section id="sync" className="card">
+          <h2>4. Syncing & Data Processing Roles</h2>
+          <h3>Syncing Behavior</h3>
+          <ul>
+            <li><strong>What Syncs:</strong> Favorites, playlists, and watch history sync to your account when you are logged in.</li>
+            <li><strong>When:</strong> Sync occurs on sign‑in, during normal use when online, and when connectivity is restored.</li>
+            <li><strong>Conflicts:</strong> Latest change generally applies (last‑write‑wins). We aim to preserve your most recent actions.</li>
+            <li><strong>Local‑Only Mode:</strong> If you are signed out, preferences and offline content remain on the device only.</li>
+          </ul>
+          <h3>Controller vs. Processors</h3>
+          <ul>
+            <li><strong>Data Controller:</strong> Rudnex (for Audiu app data).</li>
+            <li><strong>Processors:</strong> PocketBase (backend platform) and Hetzner Cloud (infrastructure provider) process data on our behalf under a DPA.</li>
+            <li><strong>Independent Services:</strong> Google Sign‑In and Google Fonts handle limited data (e.g., IP for font delivery) under their own privacy terms.</li>
           </ul>
         </section>
 
         <section id="permissions" className="card">
-          <h2>4. App Permissions (Android)</h2>
+          <h2>5. App Permissions (Android)</h2>
           <p>Our app requests only essential permissions:</p>
           <ul>
             <li><strong>Internet/Network Access</strong> – Required for streaming audio and API access</li>
@@ -155,7 +174,7 @@ export default function AudiuPrivacy() {
         </section>
 
         <section id="sharing" className="card">
-          <h2>5. Sharing & Third‑Party Services</h2>
+          <h2>6. Sharing & Third‑Party Services</h2>
           <h3>Third‑Party Integrations</h3>
           <ul>
             <li><strong>PocketBase</strong>: Used for secure authentication and content storage</li>
@@ -181,7 +200,7 @@ export default function AudiuPrivacy() {
         </section>
 
         <section id="security" className="card">
-          <h2>6. Data Security</h2>
+          <h2>7. Data Security</h2>
           <ul>
             <li><strong>HTTPS‑only transport</strong> for all network communications</li>
             <li><strong>Secure token and session management</strong> via PocketBase authentication</li>
@@ -194,7 +213,7 @@ export default function AudiuPrivacy() {
         </section>
 
         <section id="retention" className="card">
-          <h2>7. Data Retention</h2>
+          <h2>8. Data Retention</h2>
           <ul>
             <li><strong>Account Data:</strong> Email, name, surname, age, country, username retained while your account is active</li>
             <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, playlists stored in PocketBase database</li>
@@ -208,7 +227,7 @@ export default function AudiuPrivacy() {
         </section>
 
         <section id="rights" className="card">
-          <h2>8. Your Rights</h2>
+          <h2>9. Your Rights</h2>
           <ul>
             <li><strong>Access</strong> your personal data (profile information, usage data, preferences)</li>
             <li><strong>Correct</strong> inaccurate information (name, email, age, country)</li>
@@ -222,24 +241,45 @@ export default function AudiuPrivacy() {
         </section>
 
         <section id="children" className="card">
-          <h2>9. Children's Privacy</h2>
-          <p>Audiu is intended for users aged 13 and above. We enforce strict age verification during account creation:</p>
+          <h2>10. Children's Privacy & Regional Age Requirements</h2>
+          <p>Audiu implements age verification measures to comply with international children's privacy laws, including COPPA, GDPR, and other regional regulations. The minimum age requirement varies by country to ensure full legal compliance.</p>
+          <h3>Regional Age Requirements</h3>
           <ul>
-            <li><strong>Mandatory Age Verification:</strong> All users must provide and verify their age during registration</li>
-            <li><strong>Enhanced Google Sign-In Protection:</strong> Users who sign in with Google must complete age verification before accessing the app</li>
-            <li><strong>No Bypass Protection:</strong> Users cannot skip age verification; attempting to navigate away will log them out</li>
-            <li><strong>Immediate Data Deletion:</strong> If we discover a user under 13, we delete their account and data immediately</li>
+            <li><strong>GDPR Countries (EU):</strong> Age requirements vary from 13-16 years based on individual Member State implementations:
+              <ul>
+                <li><strong>13 years:</strong> Belgium, Denmark, Estonia, Finland, Latvia, Malta, Portugal, Sweden, United Kingdom</li>
+                <li><strong>14 years:</strong> Austria, Bulgaria, Cyprus, Italy, Lithuania, Spain</li>
+                <li><strong>15 years:</strong> Czech Republic, France, Greece</li>
+                <li><strong>16 years:</strong> Croatia, Germany, Hungary, Ireland, Luxembourg, Netherlands, Poland, Romania, Slovakia</li>
+              </ul>
+            </li>
+            <li><strong>COPPA Countries (US, Canada, Australia):</strong> 13 years minimum</li>
+            <li><strong>Other Regions:</strong> Generally 13-14 years based on local privacy laws</li>
           </ul>
-          <p>We do not knowingly collect personal information from children under 13. Parents who believe their child has provided information to us should contact us immediately.</p>
+          <h3>Age Verification Process</h3>
+          <ul>
+            <li><strong>Country-Specific Validation:</strong> Age requirements are automatically applied based on your selected country during registration</li>
+            <li><strong>Neutral Age Gate:</strong> Users provide their birth year or confirm eligibility; the screen does not encourage children to falsify age</li>
+            <li><strong>Additional Measures:</strong> For social sign‑in, profile completion (including age and country) is required before full access</li>
+            <li><strong>Anti‑Circumvention:</strong> If age verification steps are not completed, access is limited until completion</li>
+            <li><strong>Compliance Monitoring:</strong> We regularly review and update age verification measures to maintain compliance with evolving regulations</li>
+          </ul>
+          <h3>Data Handling for Minors</h3>
+          <ul>
+            <li><strong>Automatic Compliance:</strong> If we learn we have data from a user below the required age for their country, we will promptly suspend the account and delete associated personal information</li>
+            <li><strong>Parental Rights:</strong> Parents or guardians may contact us regarding their child's account or data in any jurisdiction</li>
+            <li><strong>GDPR Rights:</strong> In GDPR territories, additional rights may apply for users under the digital consent age</li>
+          </ul>
+          <p><strong>Important:</strong> We do not knowingly collect personal information from children below the required age for their country. The age verification system is designed to prevent such collection while respecting regional legal requirements.</p>
         </section>
 
         <section id="intl" className="card">
-          <h2>10. International Users</h2>
+          <h2>11. International Users</h2>
           <p>Your data may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy.</p>
         </section>
 
         <section id="changes" className="card">
-          <h2>11. Changes to This Policy</h2>
+          <h2>12. Changes to This Policy</h2>
           <p>We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We will:</p>
           <ul>
             <li>Post the updated policy with a revised date</li>
@@ -249,14 +289,14 @@ export default function AudiuPrivacy() {
         </section>
 
         <section id="contact" className="card">
-          <h2>12. Contact Information</h2>
+          <h2>13. Contact Information</h2>
           <p><strong>Email:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a><br/>
           <strong>Operator:</strong> Individual Developer (Rudnex)<br/>
           <strong>App:</strong> Audiu – Audio Story Streaming</p>
         </section>
 
         <section id="about" className="card">
-          <h2>13. About the Developer</h2>
+          <h2>14. About the Developer</h2>
           <p>This app is developed and maintained by an <strong>individual developer</strong> under the name <strong>Rudnex</strong>. While not a registered company, Rudnex operates this project and its website to provide audio story streaming services with care for user privacy and transparency.</p>
           <p>Website: <a href="https://rudnex.com" target="_blank" rel="noopener noreferrer">https://rudnex.com</a></p>
           <p>This application was built using AI-assisted development tools, including AI Cursor Agent, to accelerate and enhance the development process.</p>
