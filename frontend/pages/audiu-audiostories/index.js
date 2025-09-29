@@ -186,6 +186,10 @@ export default function AudiuAudioStories() {
           object-fit: cover;
           display: block;
         }
+        .story-card img.portrait-933x1400 {
+          height: auto;
+          aspect-ratio: 933 / 1400;
+        }
         .story-card > div {
           padding: 14px;
         }
@@ -222,6 +226,7 @@ export default function AudiuAudioStories() {
                 <img 
                   src="/audiu-audiostories/Adheera.jpg" 
                   alt="Adheera: The Born King"
+                  className="portrait-933x1400"
                   onError={(e) => {
                     console.log('Image failed to load:', e.target.src);
                     e.target.style.backgroundColor = '#333';
