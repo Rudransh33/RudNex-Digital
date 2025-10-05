@@ -24,7 +24,7 @@ export default function AudiuTerms() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-terms",
-            "dateModified": "2025-09-29"
+            "dateModified": "2025-10-05"
           })
         }} />
       </Head>
@@ -41,6 +41,7 @@ export default function AudiuTerms() {
         .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(255,45,85,.2)}
         h1{font-size:2rem;margin:0 0 6px}
         h2{font-size:1.35rem;margin:26px 0 10px}
+        h3{font-size:1.1rem;margin:18px 0 8px}
         p{line-height:1.75;color:#ebebeb}
         .muted{color:var(--muted)}
         .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:20px}
@@ -49,6 +50,7 @@ export default function AudiuTerms() {
         .pill{border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:#ddd;font-size:.9rem;text-decoration:none}
         .pill:hover{background:var(--surface);color:var(--text)}
         footer{border-top:1px solid var(--border);margin-top:32px;padding:18px 0;color:var(--muted);text-align:center;font-size:.9rem}
+        code{background:#0f0f0f;padding:2px 6px;border-radius:8px;border:1px solid #242424}
       `}</style>
 
       <header role="banner" aria-label="Site header">
@@ -56,8 +58,8 @@ export default function AudiuTerms() {
           <nav>
             <div className="brand"><span className="dot"></span> Audiu Terms of Service</div>
             <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
-              <a className="pill" href="/audiu-audiostories">Back to Stories</a>
-              <a className="pill" href="/audiu-audiostories/privacy">Privacy Policy</a>
+              <a className="pill" href="/audiu-audioStories">Back to Stories</a>
+              <a className="pill" href="/audiu-audioStories/privacy">Privacy Policy</a>
             </div>
           </nav>
         </div>
@@ -66,7 +68,7 @@ export default function AudiuTerms() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu – Terms of Service</h1>
-          <p className="muted"><strong>Last updated:</strong> September 29, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 5, 2025</p>
           <div className="toc">
             <a className="pill" href="#acceptance">Acceptance of Terms</a>
             <a className="pill" href="#use">Use of the Service</a>
@@ -96,7 +98,9 @@ export default function AudiuTerms() {
           <p>To access certain features, you must create an account with the following requirements:</p>
           <ul>
             <li><strong>Account Creation:</strong> You may register using email/password or Google Sign-In</li>
-            <li><strong>Required Information:</strong> Name, surname, email, age, and country are mandatory</li>
+            <li><strong>Required Information:</strong> Name, email, age, and country are mandatory</li>
+            <li><strong>Profile Completion:</strong> All users (including those using Google Sign-In) must complete their profile with age and country information via the Complete Profile screen before accessing the app</li>
+            <li><strong>Single Entry:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app; contact us if you need to update this information</li>
             <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials</li>
             <li><strong>Account Activity:</strong> You are responsible for all activities under your account</li>
             <li><strong>Accurate Information:</strong> You must provide truthful and complete information during registration</li>
@@ -104,15 +108,39 @@ export default function AudiuTerms() {
         </section>
 
         <section id="age" className="card">
-          <h2>4. Age Requirements & Verification</h2>
-          <p>Audiu enforces strict age verification to comply with children's privacy laws:</p>
+          <h2>4. Age Requirements & Regional Verification</h2>
+          <p>To comply with international children's privacy laws (including COPPA, GDPR, and other regional regulations), Audiu implements country-specific age verification:</p>
+          
+          <h3>Regional Age Requirements</h3>
           <ul>
-            <li><strong>Minimum Age:</strong> You must be at least 13 years old to use Audiu</li>
-            <li><strong>Mandatory Verification:</strong> All users must verify their age during account creation</li>
-            <li><strong>Enhanced Protection:</strong> Google Sign-In users must complete age verification before app access</li>
-            <li><strong>No Bypass:</strong> Age verification cannot be skipped; attempting to navigate away will log you out</li>
-            <li><strong>Account Termination:</strong> Accounts of users under 13 will be immediately terminated and data deleted</li>
-            <li><strong>Parental Notice:</strong> Parents who discover their child under 13 has created an account should contact us immediately</li>
+            <li><strong>European Union (GDPR):</strong> Age requirements vary by Member State (13-16 years):
+              <ul>
+                <li>13 years: Belgium, Denmark, Estonia, Finland, Latvia, Malta, Portugal, Sweden, United Kingdom</li>
+                <li>14 years: Austria, Bulgaria, Cyprus, Italy, Lithuania, Spain</li>
+                <li>15 years: Czech Republic, France, Greece</li>
+                <li>16 years: Croatia, Germany, Hungary, Ireland, Luxembourg, Netherlands, Poland, Romania, Slovakia</li>
+              </ul>
+            </li>
+            <li><strong>United States, Canada, Australia:</strong> 13 years (COPPA and similar regulations)</li>
+            <li><strong>Other Countries:</strong> Generally 13-14 years based on local privacy laws</li>
+          </ul>
+          
+          <h3>Verification Process</h3>
+          <ul>
+            <li><strong>Mandatory Profile Completion:</strong> All users (including Google Sign-In) must complete the Complete Profile screen with age and country information before accessing the app</li>
+            <li><strong>Country-Based Validation:</strong> The minimum age requirement is automatically determined based on your selected country during the Complete Profile screen</li>
+            <li><strong>Age Declaration:</strong> Users must declare their birth year or confirm they meet the country-specific minimum age requirement</li>
+            <li><strong>Comprehensive Verification:</strong> The app includes age-gating measures designed to prevent registration by users below the required age for their country</li>
+            <li><strong>Single Collection Point:</strong> Age and country are collected once during initial login/registration and cannot be edited in-app; contact us if you need to update this information</li>
+            <li><strong>Access Control:</strong> App access is blocked until profile completion is finished, ensuring all users provide required age and country information</li>
+            <li><strong>Ongoing Compliance:</strong> We regularly update our verification systems to maintain compliance with evolving regional regulations</li>
+          </ul>
+          
+          <h3>Compliance & Enforcement</h3>
+          <ul>
+            <li><strong>Automatic Enforcement:</strong> If we become aware of an account holder below the required age for their country, we will promptly suspend the account and delete associated personal information</li>
+            <li><strong>Parental Rights:</strong> Parents or legal guardians may contact us regarding their child's account or data in any jurisdiction</li>
+            <li><strong>Regional Compliance:</strong> Our policies and procedures are designed to meet the highest standards across all jurisdictions where we operate</li>
           </ul>
         </section>
 
@@ -129,36 +157,36 @@ export default function AudiuTerms() {
           <h2>6. User Responsibilities & Restrictions</h2>
           <ul>
             <li>Do not attempt to reverse-engineer, hack, or disrupt the Service.</li>
-            <li>Do not attempt to circumvent age verification or other security measures.</li>
+            <li>Do not attempt to circumvent country-specific age verification or other security measures.</li>
             <li>Do not use automated systems or bots to access the Service.</li>
             <li>Do not share your account credentials with others.</li>
           </ul>
         </section>
 
         <section id="termination" className="card">
-          <h2>6. Termination</h2>
+          <h2>7. Termination</h2>
           <p>We reserve the right to suspend or terminate your access to Audiu if you violate these Terms or engage in harmful conduct.</p>
         </section>
 
         <section id="liability" className="card">
-          <h2>7. Disclaimer & Limitation of Liability</h2>
+          <h2>8. Disclaimer & Limitation of Liability</h2>
           <p>Audiu is provided on an "as-is" and "as-available" basis. To the maximum extent permitted by law, Rudnex (the individual developer) disclaims all warranties and is not liable for damages arising from use of the Service.</p>
         </section>
 
         <section id="changes" className="card">
-          <h2>8. Changes to Terms</h2>
+          <h2>9. Changes to Terms</h2>
           <p>We may update these Terms from time to time. The revised version will be posted with a new "Last updated" date. Continued use of the Service after changes means you accept the new Terms.</p>
         </section>
 
         <section id="contact" className="card">
-          <h2>9. Contact</h2>
+          <h2>10. Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a><br/>
           <strong>Operator:</strong> Individual Developer (Rudnex)<br/>
           <strong>Website:</strong> <a href="https://rudnex.com" target="_blank" rel="noopener noreferrer">https://rudnex.com</a></p>
         </section>
 
         <section id="about" className="card">
-          <h2>10. About the Developer</h2>
+          <h2>11. About the Developer</h2>
           <p>This Service is developed and maintained by an <strong>individual developer</strong> under the name <strong>Rudnex</strong>. While not a registered company, Rudnex operates this app and its website to provide audio story streaming services with transparency and respect for user rights.</p>
           <p>Website: <a href="https://rudnex.com" target="_blank" rel="noopener noreferrer">https://rudnex.com</a></p>
         </section>

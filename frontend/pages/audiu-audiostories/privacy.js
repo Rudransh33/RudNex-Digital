@@ -7,12 +7,12 @@ export default function AudiuPrivacy() {
         <title>Audiu – Privacy Policy | Rudnex</title>
         <meta name="description" content="Privacy Policy for the Audiu mobile application and Audiu Audio Stories by Rudnex. Learn what we collect, how we use it, and your rights." />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="canonical" href="https://rudnex.com/audiu-audiostories/privacy" />
+        <link rel="canonical" href="https://rudnex.com/audiu-audioStories/privacy" />
         <meta name="theme-color" content="#000000" />
         <meta property="og:title" content="Audiu – Privacy Policy | Rudnex" />
         <meta property="og:description" content="Privacy Policy for the Audiu mobile application and Audiu Audio Stories by Rudnex." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rudnex.com/audiu-audiostories/privacy" />
+        <meta property="og:url" content="https://rudnex.com/audiu-audioStories/privacy" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -23,8 +23,8 @@ export default function AudiuPrivacy() {
             "name": "Audiu Privacy Policy",
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
-            "url": "https://rudnex.com/audiu-audiostories/privacy",
-            "dateModified": "2025-09-29"
+            "url": "https://rudnex.com/audiu-audioStories/privacy",
+            "dateModified": "2025-10-05"
           })
         }} />
       </Head>
@@ -58,7 +58,7 @@ export default function AudiuPrivacy() {
           <nav>
             <div className="brand"><span className="dot"></span> Audiu Privacy Policy</div>
             <div style={{display:'flex',gap:'10px',flexWrap:'wrap'}}>
-              <a className="pill" href="/audiu-audiostories">Back to Stories</a>
+              <a className="pill" href="/audiu-audioStories">Back to Stories</a>
               <a className="pill" href="#permissions">Permissions</a>
               <a className="pill" href="#rights">Your Rights</a>
               <a className="pill" href="#contact">Contact</a>
@@ -71,7 +71,7 @@ export default function AudiuPrivacy() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu Privacy Policy</h1>
-          <p className="muted"><strong>Last updated:</strong> September 29, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 5, 2025</p>
           <div className="toc">
             <a className="pill" href="#scope">Scope & Controller</a>
             <a className="pill" href="#collect">Information We Collect</a>
@@ -100,8 +100,9 @@ export default function AudiuPrivacy() {
           <h2>2. Information We Collect</h2>
           <h3>Mobile App Data</h3>
           <ul>
-            <li><strong>Account Information:</strong> Email, password (hashed), name, surname, age, country, username</li>
+            <li><strong>Account Information:</strong> Email, password (hashed), name, age, country, username</li>
             <li><strong>Profile Information:</strong> Name, email, age, country, optional profile image URL (Google Sign-In)</li>
+            <li><strong>Profile Completion:</strong> Age and country are collected during initial login/registration via the Complete Profile screen before full app access</li>
             <li><strong>Authentication Data:</strong> Session tokens, provider information (Google Sign-In), accepted terms</li>
             <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, playlists</li>
             <li><strong>Playback Preferences:</strong> Volume settings, background play preferences, last played story, current queue (stored locally on device)</li>
@@ -109,14 +110,15 @@ export default function AudiuPrivacy() {
             <li><strong>Device Information:</strong> Basic device type and operating system for compatibility</li>
           </ul>
           <p><strong>Note:</strong> We do not collect crash/error logs, location data, contact information, or advanced device fingerprinting.</p>
+          
           <h3>Data We Do NOT Collect</h3>
           <ul>
-            <li><strong>Crash/Error Logs:</strong> No crash reporting or error logging implemented</li>
+            <li><strong>Crash/Error Logs:</strong> Limited error logging for debugging purposes only (no personal data included)</li>
             <li><strong>Location Data:</strong> No location permissions requested or location data collected</li>
             <li><strong>Contact Information:</strong> No access to device contacts or phone numbers</li>
             <li><strong>Advanced Device Data:</strong> No device fingerprinting or detailed hardware information</li>
             <li><strong>Camera/Microphone:</strong> No camera or microphone access</li>
-            <li><strong>Third-Party Analytics:</strong> No advertising or analytics tracking</li>
+            <li><strong>Third-Party Analytics:</strong> No advertising tracking; minimal analytics for app performance only</li>
           </ul>
         </section>
 
@@ -168,7 +170,7 @@ export default function AudiuPrivacy() {
             <li>Location access</li>
             <li>Contacts or phone numbers</li>
             <li>SMS or call logs</li>
-            <li>Camera or microphone (except for optional voice reactions)</li>
+            <li>Camera or microphone</li>
             <li>Unnecessary file system access</li>
           </ul>
         </section>
@@ -179,15 +181,17 @@ export default function AudiuPrivacy() {
           <ul>
             <li><strong>PocketBase</strong>: Used for secure authentication and content storage</li>
             <li><strong>Google Sign‑In</strong>: Optional social login service</li>
-            <li><strong>Google Fonts</strong>: For typography (no personal data collected)</li>
+            <li><strong>Google Fonts</strong>: Fonts are served by Google; when your device requests font files, your IP address is processed by Google to deliver the resource. See Google Fonts privacy at <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener noreferrer">developers.google.com/fonts/faq/privacy</a>.</li>
             <li><strong>Hetzner Cloud</strong>: Data hosting and storage infrastructure</li>
           </ul>
           <h3>Data Storage & Processing</h3>
           <ul>
             <li><strong>PocketBase Database:</strong> User accounts, preferences, and usage data stored securely</li>
-            <li><strong>Database Collections:</strong> Users, watch_history, favorites, playlists, audio_reactions, stories content</li>
+            <li><strong>Database Collections:</strong> Users, watch_history, favorites, playlists, stories content (audio reactions not in use)</li>
             <li><strong>Hetzner Infrastructure:</strong> Data processed and stored on Hetzner Cloud servers</li>
-            <li><strong>Data Location:</strong> User data is stored in secure cloud infrastructure with appropriate safeguards</li>
+            <li><strong>Data Location (Regions):</strong> Primary hosting in EU/EEA Hetzner regions (e.g., Germany/Finland). Exact region may vary based on deployment.</li>
+            <li><strong>Data Processing Agreement (DPA):</strong> We rely on Hetzner's standard DPA for controller–processor obligations.</li>
+            <li><strong>International Transfers:</strong> If personal data is transferred outside the EEA, we implement appropriate safeguards (e.g., Standard Contractual Clauses) where required by law.</li>
             <li><strong>Data Encryption:</strong> All data transmission uses HTTPS encryption</li>
             <li><strong>Password Security:</strong> Passwords hashed using bcrypt before storage</li>
           </ul>
@@ -215,13 +219,12 @@ export default function AudiuPrivacy() {
         <section id="retention" className="card">
           <h2>8. Data Retention</h2>
           <ul>
-            <li><strong>Account Data:</strong> Email, name, surname, age, country, username retained while your account is active</li>
-            <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, playlists stored in PocketBase database</li>
-            <li><strong>Playback Preferences:</strong> Volume settings, background play preferences, last played story, current queue stored locally on device only</li>
-            <li><strong>Offline Downloads:</strong> Remain on your device until you delete them</li>
-            <li><strong>Session Data:</strong> Automatically cleared when you log out</li>
-            <li><strong>Deleted Accounts:</strong> All user data, usage data, and preferences removed within 30 days of account deletion</li>
-            <li><strong>No Crash Data:</strong> No error logs or crash reports are collected or stored</li>
+            <li><strong>Account Data:</strong> Retained while your account is active; removed within 30 days after deletion.</li>
+            <li><strong>Usage Data (watch history, favorites, playlists):</strong> Retained while your account is active to provide core functionality; you can clear items at any time and all remaining data is removed within 30 days after account deletion.</li>
+            <li><strong>Playback Preferences:</strong> Stored locally on your device only and retained until you clear app data, uninstall the app, or reset preferences.</li>
+            <li><strong>Offline Downloads:</strong> Remain on your device until you delete them or uninstall the app.</li>
+            <li><strong>Session Data:</strong> Automatically cleared when you log out.</li>
+            <li><strong>Crash/Error Logs:</strong> Not collected.</li>
           </ul>
           <p>You can request immediate deletion of your data by contacting us at <a href="mailto:contact@rudnex.com">contact@rudnex.com</a>.</p>
         </section>
@@ -230,14 +233,15 @@ export default function AudiuPrivacy() {
           <h2>9. Your Rights</h2>
           <ul>
             <li><strong>Access</strong> your personal data (profile information, usage data, preferences)</li>
-            <li><strong>Correct</strong> inaccurate information (name, email, age, country)</li>
+            <li><strong>View</strong> your account information (name, email, age, country) in the profile section</li>
             <li><strong>Delete</strong> your account and all associated data (watch history, favorites, playlists)</li>
             <li><strong>Export</strong> your data (playlists, favorites, watch history, playback preferences)</li>
-            <li><strong>Manage</strong> your audio reactions and voice recordings</li>
             <li><strong>Revoke</strong> Google Sign‑In access via your Google account settings</li>
             <li><strong>Control</strong> your playback preferences and volume settings</li>
           </ul>
+          <p><strong>Note:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app. Contact us if you need to update this information.</p>
           <p><strong>Contact us at:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> for any data‑related requests.</p>
+          <p><strong>Note:</strong> This is the same email address used for the "Share Feedback" feature in the app.</p>
         </section>
 
         <section id="children" className="card">
@@ -258,10 +262,11 @@ export default function AudiuPrivacy() {
           </ul>
           <h3>Age Verification Process</h3>
           <ul>
-            <li><strong>Country-Specific Validation:</strong> Age requirements are automatically applied based on your selected country during registration</li>
+            <li><strong>Mandatory Profile Completion:</strong> All users (including Google Sign-In) must complete their profile with age and country information before accessing the app</li>
+            <li><strong>Country-Specific Validation:</strong> Age requirements are automatically applied based on your selected country during the Complete Profile screen</li>
             <li><strong>Neutral Age Gate:</strong> Users provide their birth year or confirm eligibility; the screen does not encourage children to falsify age</li>
-            <li><strong>Additional Measures:</strong> For social sign‑in, profile completion (including age and country) is required before full access</li>
-            <li><strong>Anti‑Circumvention:</strong> If age verification steps are not completed, access is limited until completion</li>
+            <li><strong>Single Collection Point:</strong> Age and country are collected once during initial login/registration and cannot be edited in-app (contact us to update)</li>
+            <li><strong>Anti‑Circumvention:</strong> If profile completion is not finished, app access is blocked until completion</li>
             <li><strong>Compliance Monitoring:</strong> We regularly review and update age verification measures to maintain compliance with evolving regulations</li>
           </ul>
           <h3>Data Handling for Minors</h3>
@@ -294,7 +299,7 @@ export default function AudiuPrivacy() {
           <ul>
             <li><strong>In‑App:</strong> Go to Profile → Settings → Request Account Deletion (if available in your version). We will process the request within 30 days.</li>
             <li><strong>Email:</strong> If you cannot access the app, email <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> from the email address associated with your account and include the subject "Audiu Account Deletion".</li>
-            <li><strong>What is deleted:</strong> Account details (name, surname, email, age, country), watch history, favorites, playlists, and session data stored on our servers.</li>
+            <li><strong>What is deleted:</strong> Account details (name, email, age, country), watch history, favorites, playlists, and session data stored on our servers.</li>
             <li><strong>Local data:</strong> Offline downloads stored on your device are not automatically removed. You can delete them from the app or by removing the files from your device storage.</li>
           </ul>
           <p>After deletion is completed, remaining backups (if any) are purged during regular backup rotation cycles.</p>
