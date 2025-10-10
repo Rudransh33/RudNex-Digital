@@ -24,7 +24,7 @@ export default function AudiuTerms() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-terms",
-            "dateModified": "2025-10-05"
+            "dateModified": "2025-10-10"
           })
         }} />
       </Head>
@@ -68,7 +68,7 @@ export default function AudiuTerms() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu – Terms of Service</h1>
-          <p className="muted"><strong>Last updated:</strong> October 5, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 10, 2025</p>
           <div className="toc">
             <a className="pill" href="#acceptance">Acceptance of Terms</a>
             <a className="pill" href="#use">Use of the Service</a>
@@ -104,6 +104,8 @@ export default function AudiuTerms() {
             <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials</li>
             <li><strong>Account Activity:</strong> You are responsible for all activities under your account</li>
             <li><strong>Accurate Information:</strong> You must provide truthful and complete information during registration</li>
+            <li><strong>Account Deletion:</strong> You may delete your account at any time via the in-app "Delete Account" option in Settings, which will immediately and permanently remove all your data</li>
+            <li><strong>Automatic Cleanup:</strong> Accounts that have been inactive for 2 years or more are automatically deleted to comply with GDPR data minimization requirements</li>
           </ul>
         </section>
 
@@ -149,6 +151,8 @@ export default function AudiuTerms() {
           <ul>
             <li>All audio stories, text, images, and other media available on Audiu are protected by copyright and intellectual property laws.</li>
             <li>You may not copy, distribute, modify, or create derivative works without authorization.</li>
+            <li>Personal features such as watch history, favorites, and listen later queue are provided for your personal use only.</li>
+            <li>Offline downloads (when available) are for personal, non-commercial use only and may not be shared or distributed.</li>
             <li>The Service does not currently support user-submitted content such as reactions or comments.</li>
           </ul>
         </section>
@@ -165,7 +169,19 @@ export default function AudiuTerms() {
 
         <section id="termination" className="card">
           <h2>7. Termination</h2>
-          <p>We reserve the right to suspend or terminate your access to Audiu if you violate these Terms or engage in harmful conduct.</p>
+          <h3>By You</h3>
+          <ul>
+            <li><strong>In-App Deletion:</strong> You may delete your account at any time via Settings → "Delete Account"</li>
+            <li><strong>Immediate Effect:</strong> Account deletion is permanent and cannot be undone</li>
+            <li><strong>Data Removal:</strong> All your data (watch history, favorites, listen later queue, account details) will be immediately and permanently deleted from our servers</li>
+            <li><strong>Local Data:</strong> To fully remove all data, uninstall the app after account deletion</li>
+          </ul>
+          <h3>By Us</h3>
+          <ul>
+            <li><strong>Violation of Terms:</strong> We reserve the right to suspend or terminate your access if you violate these Terms or engage in harmful conduct</li>
+            <li><strong>Automatic Deletion:</strong> Accounts inactive for 2+ years are automatically deleted to comply with GDPR data minimization requirements</li>
+            <li><strong>Notice:</strong> We will attempt to provide notice before termination when possible (except in cases of immediate security concerns)</li>
+          </ul>
         </section>
 
         <section id="liability" className="card">

@@ -24,7 +24,7 @@ export default function AudiuPrivacy() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-audioStories/privacy",
-            "dateModified": "2025-10-05"
+            "dateModified": "2025-10-10"
           })
         }} />
       </Head>
@@ -71,7 +71,7 @@ export default function AudiuPrivacy() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu Privacy Policy</h1>
-          <p className="muted"><strong>Last updated:</strong> October 5, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 10, 2025</p>
           <div className="toc">
             <a className="pill" href="#scope">Scope & Controller</a>
             <a className="pill" href="#collect">Information We Collect</a>
@@ -104,9 +104,9 @@ export default function AudiuPrivacy() {
             <li><strong>Profile Information:</strong> Name, email, age, country, optional profile image URL (Google Sign-In)</li>
             <li><strong>Profile Completion:</strong> Age and country are collected during initial login/registration via the Complete Profile screen before full app access</li>
             <li><strong>Authentication Data:</strong> Session tokens, provider information (Google Sign-In), accepted terms</li>
-            <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, playlists</li>
+            <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, listen later queue</li>
             <li><strong>Playback Preferences:</strong> Volume settings, background play preferences, last played story, current queue (stored locally on device)</li>
-            <li><strong>Offline Content:</strong> Optional offline downloads stored locally on your device</li>
+            <li><strong>Offline Content:</strong> Optional offline downloads (feature coming soon, not yet available)</li>
             <li><strong>Device Information:</strong> Basic device type and operating system for compatibility</li>
           </ul>
           <p><strong>Note:</strong> We do not collect crash/error logs, location data, contact information, or advanced device fingerprinting.</p>
@@ -126,12 +126,12 @@ export default function AudiuPrivacy() {
           <h2>3. How We Use Information</h2>
           <ul>
             <li><strong>Account Management:</strong> Authenticate users, store profile information, manage country-specific age verification (13-16+ based on regional requirements)</li>
-            <li><strong>Content Delivery:</strong> Stream audio stories, enable offline downloads, sync content across devices</li>
-            <li><strong>Personalization:</strong> Track watch history, manage favorites and playlists, remember playback positions</li>
+            <li><strong>Content Delivery:</strong> Stream audio stories, sync content across devices</li>
+            <li><strong>Personalization:</strong> Track watch history, manage favorites and listen later queue, remember playback positions</li>
             <li><strong>User Preferences:</strong> Store volume settings, background play preferences, audio device settings</li>
-            <li><strong>Content Management:</strong> Manage offline downloads and local content storage</li>
-            <li><strong>App Functionality:</strong> Maintain session state, sync user data, provide seamless experience</li>
+            <li><strong>App Functionality:</strong> Maintain session state, sync user data across devices, provide seamless experience</li>
             <li><strong>Security:</strong> Prevent abuse, ensure age compliance, maintain secure authentication</li>
+            <li><strong>Data Management:</strong> Automatic cleanup of inactive accounts (accounts inactive for 2+ years are automatically deleted)</li>
           </ul>
         </section>
 
@@ -187,13 +187,14 @@ export default function AudiuPrivacy() {
           <h3>Data Storage & Processing</h3>
           <ul>
             <li><strong>PocketBase Database:</strong> User accounts, preferences, and usage data stored securely</li>
-            <li><strong>Database Collections:</strong> Users, watch_history, favorites, playlists, stories content (audio reactions not in use)</li>
+            <li><strong>Database Collections:</strong> Users, watch_history, favorites, listen_later, stories content</li>
             <li><strong>Hetzner Infrastructure:</strong> Data processed and stored on Hetzner Cloud servers</li>
             <li><strong>Data Location (Regions):</strong> Primary hosting in EU/EEA Hetzner regions (e.g., Germany/Finland). Exact region may vary based on deployment.</li>
             <li><strong>Data Processing Agreement (DPA):</strong> We rely on Hetzner's standard DPA for controller–processor obligations.</li>
             <li><strong>International Transfers:</strong> If personal data is transferred outside the EEA, we implement appropriate safeguards (e.g., Standard Contractual Clauses) where required by law.</li>
             <li><strong>Data Encryption:</strong> All data transmission uses HTTPS encryption</li>
             <li><strong>Password Security:</strong> Passwords hashed using bcrypt before storage</li>
+            <li><strong>CASCADE DELETE:</strong> Automatic deletion of related data (watch history, favorites, listen later) when user account is deleted</li>
           </ul>
           <h3>Data Sharing Policy</h3>
           <ul>
@@ -219,14 +220,16 @@ export default function AudiuPrivacy() {
         <section id="retention" className="card">
           <h2>8. Data Retention</h2>
           <ul>
-            <li><strong>Account Data:</strong> Retained while your account is active; removed within 30 days after deletion.</li>
-            <li><strong>Usage Data (watch history, favorites, playlists):</strong> Retained while your account is active to provide core functionality; you can clear items at any time and all remaining data is removed within 30 days after account deletion.</li>
+            <li><strong>Account Data:</strong> Retained while your account is active; removed immediately after deletion via in-app deletion or within 7 days after email request.</li>
+            <li><strong>Usage Data (watch history, favorites, listen later):</strong> Retained while your account is active to provide core functionality; you can clear items at any time; all data is immediately removed when you delete your account.</li>
             <li><strong>Playback Preferences:</strong> Stored locally on your device only and retained until you clear app data, uninstall the app, or reset preferences.</li>
-            <li><strong>Offline Downloads:</strong> Remain on your device until you delete them or uninstall the app.</li>
+            <li><strong>Offline Downloads:</strong> Feature not yet available. When released, downloads will remain on your device until you delete them or uninstall the app.</li>
             <li><strong>Session Data:</strong> Automatically cleared when you log out.</li>
             <li><strong>Crash/Error Logs:</strong> Not collected.</li>
+            <li><strong>Automatic Cleanup:</strong> Accounts that have been inactive for 2 years or more are automatically deleted to comply with data minimization principles and GDPR requirements.</li>
           </ul>
-          <p>You can request immediate deletion of your data by contacting us at <a href="mailto:contact@rudnex.com">contact@rudnex.com</a>.</p>
+          <p><strong>Data Deletion Guarantee:</strong> We implement dual-layer deletion (CASCADE DELETE + explicit deletion) to ensure complete removal of your data with no orphaned records.</p>
+          <p>You can delete your account at any time via the in-app "Delete Account" option in Settings, or by contacting us at <a href="mailto:contact@rudnex.com">contact@rudnex.com</a>.</p>
         </section>
 
         <section id="rights" className="card">
@@ -234,12 +237,13 @@ export default function AudiuPrivacy() {
           <ul>
             <li><strong>Access</strong> your personal data (profile information, usage data, preferences)</li>
             <li><strong>View</strong> your account information (name, email, age, country) in the profile section</li>
-            <li><strong>Delete</strong> your account and all associated data (watch history, favorites, playlists)</li>
-            <li><strong>Export</strong> your data (playlists, favorites, watch history, playback preferences)</li>
+            <li><strong>Delete</strong> your account and all associated data via in-app "Delete Account" in Settings (watch history, favorites, listen later queue are immediately removed)</li>
+            <li><strong>Clear Data</strong> locally by uninstalling the app (removes playback preferences and local data; account data remains on server unless deleted via Settings)</li>
             <li><strong>Revoke</strong> Google Sign‑In access via your Google account settings</li>
             <li><strong>Control</strong> your playback preferences and volume settings</li>
           </ul>
           <p><strong>Note:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app. Contact us if you need to update this information.</p>
+          <p><strong>Data Export:</strong> Data export feature is planned for a future update.</p>
           <p><strong>Contact us at:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> for any data‑related requests.</p>
           <p><strong>Note:</strong> This is the same email address used for the "Share Feedback" feature in the app.</p>
         </section>
@@ -295,14 +299,38 @@ export default function AudiuPrivacy() {
 
         <section id="account-deletion" className="card">
           <h2>13. Account Deletion</h2>
-          <p>You can request deletion of your account and all associated personal data at any time.</p>
+          <p>You can delete your account and all associated personal data at any time.</p>
+          
+          <h3>In-App Deletion (Recommended)</h3>
           <ul>
-            <li><strong>In‑App:</strong> Go to Profile → Settings → Request Account Deletion (if available in your version). We will process the request within 30 days.</li>
-            <li><strong>Email:</strong> If you cannot access the app, email <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> from the email address associated with your account and include the subject "Audiu Account Deletion".</li>
-            <li><strong>What is deleted:</strong> Account details (name, email, age, country), watch history, favorites, playlists, and session data stored on our servers.</li>
-            <li><strong>Local data:</strong> Offline downloads stored on your device are not automatically removed. You can delete them from the app or by removing the files from your device storage.</li>
+            <li><strong>How to Delete:</strong> Go to Profile → Settings → "Delete Account" (red button at bottom)</li>
+            <li><strong>Immediate Effect:</strong> Account deletion is processed immediately and cannot be undone</li>
+            <li><strong>What is Deleted Immediately:</strong>
+              <ul>
+                <li>Account details (name, email, age, country)</li>
+                <li>Watch history (all playback history and progress)</li>
+                <li>Favorites (all saved favorite stories)</li>
+                <li>Listen later queue (all queued stories)</li>
+                <li>Session data and authentication tokens</li>
+                <li>All user-specific data from our servers</li>
+              </ul>
+            </li>
+            <li><strong>Local Data:</strong> Local app data (playback preferences, volume settings) will be cleared. To fully remove all local data, uninstall the app after account deletion.</li>
+            <li><strong>Deletion Guarantee:</strong> We use dual-layer deletion (CASCADE DELETE + explicit deletion) to ensure no orphaned data remains on our servers.</li>
           </ul>
-          <p>After deletion is completed, remaining backups (if any) are purged during regular backup rotation cycles.</p>
+          
+          <h3>Email Deletion (If You Can't Access the App)</h3>
+          <ul>
+            <li><strong>Email Us:</strong> Send an email to <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> from your registered email address</li>
+            <li><strong>Subject Line:</strong> "Audiu Account Deletion Request"</li>
+            <li><strong>Processing Time:</strong> We will process your request within 7 days</li>
+          </ul>
+          
+          <h3>Automatic Deletion</h3>
+          <ul>
+            <li><strong>Inactive Accounts:</strong> Accounts that have been inactive for 2 years or more are automatically deleted to comply with GDPR data minimization requirements</li>
+            <li><strong>Notification:</strong> We may send a notification before automatic deletion (if email is accessible)</li>
+          </ul>
         </section>
 
         <section id="contact" className="card">
