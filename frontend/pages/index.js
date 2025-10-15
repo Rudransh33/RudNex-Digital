@@ -97,6 +97,9 @@ export default function Home() {
                 <Link href="/checkliotasks" className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                   Checklio Tasks
                 </Link>
+                <Link href="/audiu-audiostories" className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+                  Audiu Stories
+                </Link>
                 <Link href="/contact" className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                   Get Started
                 </Link>
