@@ -24,7 +24,7 @@ export default function AudiuTerms() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-terms",
-            "dateModified": "2025-10-10"
+            "dateModified": "2025-10-15"
           })
         }} />
       </Head>
@@ -68,7 +68,7 @@ export default function AudiuTerms() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu – Terms of Service</h1>
-          <p className="muted"><strong>Last updated:</strong> October 10, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 15, 2025</p>
           <div className="toc">
             <a className="pill" href="#acceptance">Acceptance of Terms</a>
             <a className="pill" href="#use">Use of the Service</a>
@@ -98,10 +98,11 @@ export default function AudiuTerms() {
           <p>To access certain features, you must create an account with the following requirements:</p>
           <ul>
             <li><strong>Account Creation:</strong> You may register using email/password or Google Sign-In</li>
+            <li><strong>Account Linking:</strong> You can securely link multiple authentication methods (e.g., Google, email/password) to a single account using OTP verification for flexible login options</li>
             <li><strong>Required Information:</strong> Name, email, age, and country are mandatory</li>
             <li><strong>Profile Completion:</strong> All users (including those using Google Sign-In) must complete their profile with age and country information via the Complete Profile screen before accessing the app</li>
-            <li><strong>Single Entry:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app; contact us if you need to update this information</li>
-            <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials</li>
+            <li><strong>Single Entry:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app (contact us if you need to update); edit profile feature was intentionally removed as all required information is collected during initial setup</li>
+            <li><strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your login credentials and OTP verification codes</li>
             <li><strong>Account Activity:</strong> You are responsible for all activities under your account</li>
             <li><strong>Accurate Information:</strong> You must provide truthful and complete information during registration</li>
             <li><strong>Account Deletion:</strong> You may delete your account at any time via the in-app "Delete Account" option in Settings, which will immediately and permanently remove all your data</li>
@@ -161,9 +162,10 @@ export default function AudiuTerms() {
           <h2>6. User Responsibilities & Restrictions</h2>
           <ul>
             <li>Do not attempt to reverse-engineer, hack, or disrupt the Service.</li>
-            <li>Do not attempt to circumvent country-specific age verification or other security measures.</li>
+            <li>Do not attempt to circumvent country-specific age verification, OTP verification, or other security measures.</li>
             <li>Do not use automated systems or bots to access the Service.</li>
-            <li>Do not share your account credentials with others.</li>
+            <li>Do not share your account credentials, OTP codes, or authentication tokens with others.</li>
+            <li>Do not abuse the account linking feature by attempting unauthorized account linking or OTP code manipulation.</li>
           </ul>
         </section>
 
