@@ -24,7 +24,7 @@ export default function AudiuPrivacy() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-audioStories/privacy",
-            "dateModified": "2025-10-10"
+            "dateModified": "2025-10-15"
           })
         }} />
       </Head>
@@ -71,7 +71,7 @@ export default function AudiuPrivacy() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu Privacy Policy</h1>
-          <p className="muted"><strong>Last updated:</strong> October 10, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 15, 2025</p>
           <div className="toc">
             <a className="pill" href="#scope">Scope & Controller</a>
             <a className="pill" href="#collect">Information We Collect</a>
@@ -102,8 +102,10 @@ export default function AudiuPrivacy() {
           <ul>
             <li><strong>Account Information:</strong> Email, password (hashed), name, age, country, username</li>
             <li><strong>Profile Information:</strong> Name, email, age, country, optional profile image URL (Google Sign-In)</li>
-            <li><strong>Profile Completion:</strong> Age and country are collected during initial login/registration via the Complete Profile screen before full app access</li>
-            <li><strong>Authentication Data:</strong> Session tokens, provider information (Google Sign-In), accepted terms</li>
+            <li><strong>Profile Completion:</strong> Age and country are collected once during initial login/registration via the Complete Profile screen before full app access; cannot be edited in-app (contact us to update)</li>
+            <li><strong>Authentication Data:</strong> Session tokens, provider information (Google Sign-In), accepted terms, linked social providers</li>
+            <li><strong>Account Linking Data:</strong> Social credentials stored separately when linking multiple authentication methods (e.g., linking Google to email/password account)</li>
+            <li><strong>OTP Verification Data:</strong> Temporary verification codes for secure account linking (expires after 10 minutes, linking window 30 minutes)</li>
             <li><strong>Usage Data:</strong> Watch history (story titles, playback positions, timestamps), favorites, listen later queue</li>
             <li><strong>Playback Preferences:</strong> Volume settings, background play preferences, last played story, current queue (stored locally on device)</li>
             <li><strong>Offline Content:</strong> Optional offline downloads (feature coming soon, not yet available)</li>
@@ -126,12 +128,14 @@ export default function AudiuPrivacy() {
           <h2>3. How We Use Information</h2>
           <ul>
             <li><strong>Account Management:</strong> Authenticate users, store profile information, manage country-specific age verification (13-16+ based on regional requirements)</li>
+            <li><strong>Account Linking:</strong> Securely link multiple authentication methods (e.g., Google, email/password) to a single account using OTP verification</li>
             <li><strong>Content Delivery:</strong> Stream audio stories, sync content across devices</li>
             <li><strong>Personalization:</strong> Track watch history, manage favorites and listen later queue, remember playback positions</li>
             <li><strong>User Preferences:</strong> Store volume settings, background play preferences, audio device settings</li>
             <li><strong>App Functionality:</strong> Maintain session state, sync user data across devices, provide seamless experience</li>
-            <li><strong>Security:</strong> Prevent abuse, ensure age compliance, maintain secure authentication</li>
+            <li><strong>Security:</strong> Prevent abuse, ensure age compliance, maintain secure authentication, validate OTP codes for account linking</li>
             <li><strong>Data Management:</strong> Automatic cleanup of inactive accounts (accounts inactive for 2+ years are automatically deleted)</li>
+            <li><strong>Audit Logging:</strong> Track account linking activities and security events for safety and compliance</li>
           </ul>
         </section>
 
@@ -242,7 +246,8 @@ export default function AudiuPrivacy() {
             <li><strong>Revoke</strong> Google Sign‑In access via your Google account settings</li>
             <li><strong>Control</strong> your playback preferences and volume settings</li>
           </ul>
-          <p><strong>Note:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app. Contact us if you need to update this information.</p>
+          <p><strong>Note:</strong> Profile information (age, country) is collected once during initial registration and cannot be edited in-app (contact us if you need to update this information). The edit profile feature was intentionally removed as all required information is collected during the initial Complete Profile screen.</p>
+          <p><strong>Account Linking:</strong> You can link multiple authentication methods (e.g., Google, email/password) to your account via secure OTP verification sent to your email.</p>
           <p><strong>Data Export:</strong> Data export feature is planned for a future update.</p>
           <p><strong>Contact us at:</strong> <a href="mailto:contact@rudnex.com">contact@rudnex.com</a> for any data‑related requests.</p>
           <p><strong>Note:</strong> This is the same email address used for the "Share Feedback" feature in the app.</p>
