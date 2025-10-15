@@ -14,7 +14,19 @@
     "frontend",
     "deployment",
     "node_modules",
-    "**/__pycache__"
+    "**/__pycache__",
+    ".git",
+    "backend/venv",
+    "backend/outputs",
+    "backend/uploads",
+    "**/.venv",
+    "**/.pytest_cache",
+    "**/.next",
+    "**/dist",
+    "**/build",
+    "**/.turbo",
+    ".cursor",
+    ".vercel"
   ]
 }
 
