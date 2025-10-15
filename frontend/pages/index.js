@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Head>
-        <title>Rudnex Digital - Checklio Tasks & Audio Story Apps</title>
-        <meta name="description" content="Simple and powerful Checklio Tasks app and immersive Audio Story app for your daily productivity and entertainment." />
+        <title>Rudnex Digital - Checklio Tasks & Audiu</title>
+        <meta name="description" content="Simple and powerful Checklio Tasks app and Audiu audio stories for your daily productivity and entertainment." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
@@ -98,7 +98,7 @@ export default function Home() {
                   Checklio Tasks
                 </Link>
                 <Link href="/audiu-audiostories" className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
-                  Audiu Stories
+                  Audiu
                 </Link>
                 <Link href="/contact" className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors">
                   Get Started
