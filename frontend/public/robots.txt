@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /api
+Disallow: /admin
+Disallow: /private
+
+Sitemap: https://rudnex.com/sitemap.xml
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Crawl-delay: 0
+User-agent: *
