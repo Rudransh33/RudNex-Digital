@@ -24,7 +24,7 @@ export default function AudiuTerms() {
             "publisher": {"@type": "Person", "name": "Rudnex"},
             "inLanguage": "en",
             "url": "https://rudnex.com/audiu-terms",
-            "dateModified": "2025-10-15"
+            "dateModified": "2025-10-23"
           })
         }} />
       </Head>
@@ -68,7 +68,7 @@ export default function AudiuTerms() {
       <main className="container" role="main">
         <section className="card">
           <h1>Audiu – Terms of Service</h1>
-          <p className="muted"><strong>Last updated:</strong> October 15, 2025</p>
+          <p className="muted"><strong>Last updated:</strong> October 23, 2025 | <strong>Version:</strong> 1.0.5+6</p>
           <div className="toc">
             <a className="pill" href="#acceptance">Acceptance of Terms</a>
             <a className="pill" href="#use">Use of the Service</a>
